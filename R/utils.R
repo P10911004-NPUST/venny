@@ -86,6 +86,7 @@ venny_init <- function(sets = list())
     elements_length <- lapply(zone_elements, length)
     elements_length <- do.call(rbind.data.frame, elements_length)[[1]]
 
+    df0["zone_label"] <- rownames(df0)
     df0["length"] <- elements_length
     df0["percentage"] <- proportions(elements_length) * 100
     df0["elements"] <- elements
