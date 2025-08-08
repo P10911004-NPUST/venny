@@ -12,3 +12,6 @@ RoxygenNote: 7.3.2
 Imports: 
     ggplot2,
     sf
+Depends: 
+    R (>= 3.5)
+LazyData: true

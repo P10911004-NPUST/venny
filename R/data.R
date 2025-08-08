@@ -1,4 +1,3 @@
-
 #' RNA-seq data
 #'
 #' A matrix (read count data) and a data.frame (information for the samples,

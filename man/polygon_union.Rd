@@ -29,11 +29,18 @@ Perform union, intersection, and difference between two polygons.
 }
 \examples{
 library(ggplot2)
-venn <- generate_ellipse_4(lst_4sets, ellipse_fill_alpha = 0.1)
+s <- 1:1000
+venn_list <- list(
+    Set_A = sample(s, 500),
+    Set_B = sample(s, 800),
+    Set_C = sample(s, 700),
+    Set_D = sample(s, 600)
+)
+venn <- generate_ellipse_4(venn_list, ellipse_fill_alpha = 0.1)
 e4 <- venn$ellipse_path
-poly <- polygon_union(e4$`Set A`, e4$`Set C`) \%>\%
-    polygon_intersect(e4$`Set B`) \%>\%
-    polygon_setdiff(e4$`Set D`)
+poly <- polygon_union(e4$`Set_A`, e4$`Set_C`) \%>\%
+    polygon_intersect(e4$`Set_B`) \%>\%
+    polygon_setdiff(e4$`Set_D`)
 
 venn$plot +
     geom_polygon(

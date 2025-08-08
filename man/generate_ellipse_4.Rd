@@ -16,15 +16,14 @@ generate_ellipse_4(
   ellipse_line_width = 0,
   ellipse_fill_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   ellipse_fill_alpha = 0.15,
-  set_label = NULL,
+  set_label = TRUE,
   set_label_position = list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)),
   set_label_family = rep("sans", times = 4),
   set_label_size = rep(5, times = 4),
   set_label_face = rep("bold", times = 4),
   set_label_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   set_label_angle = c(-45, 0, 0, 45),
-  zone_label = c("A", "B", "C", "D", "AB", "BC", "CD", "AC", "AD", "BD", "ABC", "BCD",
-    "ACD", "ABD", "ABCD"),
+  zone_label = TRUE,
   zone_label_position = list(x = c(A = -2.4, B = -1.3, C = 1.3, D = 2.4, AB = -1.6, BC =
     0, CD = 1.6, AC = -1.4, AD = 0, BD = 1.4, ABC = -0.7, BCD = 0.7, ACD = -0.7, ABD =
     0.7, ABCD = 0), y = c(A = 1.15, B = 1.9, C = 1.9, D = 1.15, AB = 1.15, BC = 1.4, CD =
@@ -84,7 +83,7 @@ generate_ellipse_4(
 
 \item{ellipse_fill_alpha}{(default: 0.15)}
 
-\item{set_label}{A character vector. Replacement for the names of \code{data} (default: NULL).}
+\item{set_label}{Show the names of each sets (default: TRUE).}
 
 \item{set_label_position}{(default: list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)))}
 
@@ -98,7 +97,7 @@ generate_ellipse_4(
 
 \item{set_label_angle}{(default: c(-45, 0, 0, 45))}
 
-\item{zone_label}{A character vector. Labels for the subset. Exp., c("A", "B", "AB")}
+\item{zone_label}{Show the zone names (default: TRUE).}
 
 \item{zone_label_position}{Similar with \code{set_label_position.} A named list consists of \code{x} and \code{y} coordinates for each zone labels.}
 
@@ -171,6 +170,7 @@ Generate a list which contains:
 }
 }
 \examples{
+library(ggplot2)
 s <- 1:1000
 venn_list <- list(
     Set_A = sample(s, 500),
@@ -178,5 +178,6 @@ venn_list <- list(
     Set_C = sample(s, 700),
     Set_D = sample(s, 600)
 )
-generate_ellipse_4(venn_list)
+out <- generate_ellipse_4(venn_list)
+out$plot + labs(title = "Four sets venn diagram")
 }
