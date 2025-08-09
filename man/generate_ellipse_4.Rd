@@ -2,10 +2,11 @@
 % Please edit documentation in R/generate_ellipse.R
 \name{generate_ellipse_4}
 \alias{generate_ellipse_4}
-\title{Plot a venn diagram}
+\title{Plot a 4 sets venn diagram}
 \usage{
 generate_ellipse_4(
-  data = list(`Set A` = c(), `Set B` = c(), `Set C` = c(), `Set D` = c()),
+  data = list(`Set A` = c(1, 2, 3, 4, 5, 7, 9), `Set B` = c(3, 5, 7, 9, 12, 15), `Set C`
+    = c(1, 4, 5, 7, 9, 10, 13), `Set D` = c(3, 4, 6, 10, 12, 14, 15)),
   x0 = c(-1.1, 0, 0, 1.1),
   y0 = c(-0.6, 0, 0, -0.6),
   a = c(2.5, 2.5, 2.5, 2.5),
@@ -16,14 +17,16 @@ generate_ellipse_4(
   ellipse_line_width = 0,
   ellipse_fill_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   ellipse_fill_alpha = 0.15,
-  set_label = TRUE,
+  show_set_label = TRUE,
   set_label_position = list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)),
   set_label_family = rep("sans", times = 4),
   set_label_size = rep(5, times = 4),
   set_label_face = rep("bold", times = 4),
   set_label_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   set_label_angle = c(-45, 0, 0, 45),
-  zone_label = TRUE,
+  show_zone_label = TRUE,
+  zone_label = c("A", "B", "C", "D", "AB", "BC", "CD", "AC", "AD", "BD", "ABC", "BCD",
+    "ACD", "ABD", "ABCD"),
   zone_label_position = list(x = c(A = -2.4, B = -1.3, C = 1.3, D = 2.4, AB = -1.6, BC =
     0, CD = 1.6, AC = -1.4, AD = 0, BD = 1.4, ABC = -0.7, BCD = 0.7, ACD = -0.7, ABD =
     0.7, ABCD = 0), y = c(A = 1.15, B = 1.9, C = 1.9, D = 1.15, AB = 1.15, BC = 1.4, CD =
@@ -34,7 +37,7 @@ generate_ellipse_4(
   zone_label_face = rep("bold.italic", times = 15),
   zone_label_color = rep("black", times = 15),
   zone_label_angle = rep(0, times = 15),
-  zone_count = TRUE,
+  show_zone_count = TRUE,
   zone_count_position = list(x = c(A = -2.4, B = -0.9, C = 0.9, D = 2.4, AB = -1.5, BC =
     0, CD = 1.5, AC = -1.4, AD = 0, BD = 1.4, ABC = -0.7, BCD = 0.7, ACD = -0.7, ABD =
     0.7, ABCD = 0), y = c(A = 0.5, B = 1.7, C = 1.7, D = 0.5, AB = 0.8, BC = 1.1, CD =
@@ -47,7 +50,7 @@ generate_ellipse_4(
   zone_count_face = rep("plain", times = 15),
   zone_count_color = rep("grey30", times = 15),
   zone_count_angle = rep(0, times = 15),
-  zone_percentage = TRUE,
+  show_zone_percentage = TRUE,
   zone_percentage_digits = 2,
   zone_percentage_position = list(x = zone_count_position[["x"]], y =
     zone_count_position[["y"]] - 0.3),
@@ -61,7 +64,7 @@ generate_ellipse_4(
 )
 }
 \arguments{
-\item{data}{A named list.}
+\item{data}{A named list with at least length of 2.}
 
 \item{x0}{The x coordinates for the center points of the ellipses (default: c(-1.1, 0, 0, 1.1)).}
 
@@ -83,7 +86,7 @@ generate_ellipse_4(
 
 \item{ellipse_fill_alpha}{(default: 0.15)}
 
-\item{set_label}{Show the names of each sets (default: TRUE).}
+\item{show_set_label}{Logical. Show the set names? (default: TRUE)}
 
 \item{set_label_position}{(default: list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)))}
 
@@ -97,9 +100,11 @@ generate_ellipse_4(
 
 \item{set_label_angle}{(default: c(-45, 0, 0, 45))}
 
-\item{zone_label}{Show the zone names (default: TRUE).}
+\item{show_zone_label}{Logical. Show the zone names? (default: TRUE)}
 
-\item{zone_label_position}{Similar with \code{set_label_position.} A named list consists of \code{x} and \code{y} coordinates for each zone labels.}
+\item{zone_label}{A character vector with length of 15. The zone names.}
+
+\item{zone_label_position}{A list contains two numeric vectors with length of 15, each for x and y coordinates. Similar with \code{set_label_position}.}
 
 \item{zone_label_family}{(default: "sans")}
 
@@ -111,7 +116,7 @@ generate_ellipse_4(
 
 \item{zone_label_angle}{(default: 0)}
 
-\item{zone_count}{Show the number of elements for each zone? (default: TRUE)}
+\item{show_zone_count}{Logical. Show the number of elements for each zone? (default: TRUE)}
 
 \item{zone_count_position}{Similar with \code{zone_label_position}.}
 
@@ -129,7 +134,7 @@ generate_ellipse_4(
 
 \item{zone_count_angle}{(default: 0)}
 
-\item{zone_percentage}{Show the percentage of \code{zone_count} for each zone? (default: TRUE).}
+\item{show_zone_percentage}{Logical. Show the percentage of \code{zone_count} for each zone? (default: TRUE).}
 
 \item{zone_percentage_digits}{Rounding for the percentage (default: 2).}
 
@@ -170,7 +175,6 @@ Generate a list which contains:
 }
 }
 \examples{
-library(ggplot2)
 s <- 1:1000
 venn_list <- list(
     Set_A = sample(s, 500),
@@ -179,5 +183,5 @@ venn_list <- list(
     Set_D = sample(s, 600)
 )
 out <- generate_ellipse_4(venn_list)
-out$plot + labs(title = "Four sets venn diagram")
+out$plot
 }

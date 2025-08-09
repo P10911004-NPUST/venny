@@ -38,10 +38,10 @@ venn_list <- list(
 )
 venn <- generate_ellipse_4(venn_list, ellipse_fill_alpha = 0.1)
 e4 <- venn$ellipse_path
-poly <- polygon_union(e4$`Set_A`, e4$`Set_C`) \%>\%
-    polygon_intersect(e4$`Set_B`) \%>\%
+poly <- polygon_union(e4$`Set_A`, e4$`Set_C`) |>
+    polygon_intersect(e4$`Set_B`) |>
     polygon_setdiff(e4$`Set_D`)
-
+# Add a polygon to the venn plot
 venn$plot +
     geom_polygon(
         inherit.aes = FALSE,

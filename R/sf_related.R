@@ -37,10 +37,10 @@ as_polygon <- function(mat = matrix())
 #' )
 #' venn <- generate_ellipse_4(venn_list, ellipse_fill_alpha = 0.1)
 #' e4 <- venn$ellipse_path
-#' poly <- polygon_union(e4$`Set_A`, e4$`Set_C`) %>%
-#'     polygon_intersect(e4$`Set_B`) %>%
+#' poly <- polygon_union(e4$`Set_A`, e4$`Set_C`) |>
+#'     polygon_intersect(e4$`Set_B`) |>
 #'     polygon_setdiff(e4$`Set_D`)
-#'
+#' # Add a polygon to the venn plot
 #' venn$plot +
 #'     geom_polygon(
 #'         inherit.aes = FALSE,
@@ -71,6 +71,7 @@ polygon_union <- function(poly1, poly2)
 }
 
 #' @rdname polygon_union
+#' @export
 polygon_intersect <- function(poly1, poly2)
 {
     poly1 <- as_polygon(poly1)
@@ -91,6 +92,7 @@ polygon_intersect <- function(poly1, poly2)
 }
 
 #' @rdname polygon_union
+#' @export
 polygon_setdiff <- function(poly1, poly2)
 {
     poly1 <- as_polygon(poly1)

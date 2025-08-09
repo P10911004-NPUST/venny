@@ -17,19 +17,13 @@ A data frame contains necessary information for subsequent inferences and plotti
 A data.frame consists of each combination of the input sets.
 }
 \examples{
-lst_4sets <- list(
-    set_1 = letters[1:26],
-    set_2 = letters[3:17],
-    set_3 = letters[11:24],
-    set_4 = letters[1:20]
+s <- 1:1000
+venn_list <- list(
+    Set_A = sample(s, 500),
+    Set_B = sample(s, 800),
+    Set_C = sample(s, 700),
+    Set_D = sample(s, 600)
 )
-df0 <- venny_df(lst_4sets)
-head(df0)
-#>    A B C D length percentage elements
-#> A  1 0 0 0      2   7.692308      y,z
-#> B  0 1 0 0      0   0.000000
-#> AB 1 1 0 0      0   0.000000
-#> C  0 0 1 0      0   0.000000
-#> AC 1 0 1 0      4  15.384615  u,v,w,x
-#> BC 0 1 1 0      0   0.000000
+df0 <- venny_df(venn_list)
+df0
 }

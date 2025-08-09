@@ -7,7 +7,6 @@
 #' @param angle (default: 0) Rotation angle (degree).
 #' @param density (default: 100)
 #'      Generate how many points? Greater amount of points yield smoother ellipse.
-#' @param set_label (default: "poly1") Name for this polygon.
 #'
 #' @returns A data.frame with the point coordinates (x, y) to construct the polygon
 #'
@@ -16,21 +15,14 @@
 #'
 #' @examples
 #' library(ggplot2)
-#' # Draw a hexagon
-#' generate_ellipse_path(a = 1, b = 1, density = 6) |>
-#' ggplot(aes(x, y)) +
-#'     geom_polygon() +
-#'     coord_fixed()
-#'
 #' # Draw a circle
-#' generate_ellipse_path(a = 1, b = 1, density = 100) |>
-#' ggplot(aes(x, y)) +
+#' circle <- generate_ellipse_path(a = 1, b = 1, density = 100)
+#' ggplot(circle, aes(x, y)) +
 #'     geom_polygon() +
 #'     coord_fixed()
-#'
 #' # Draw an ellipse
-#' generate_ellipse_path(a = 2, b = 1, angle = 45) |>
-#' ggplot(aes(x, y)) +
+#' ellipse <- generate_ellipse_path(a = 2, b = 1, angle = 45)
+#' ggplot(ellipse, aes(x, y)) +
 #'     geom_polygon() +
 #'     coord_fixed()
 generate_ellipse_path <- function(
@@ -39,8 +31,7 @@ generate_ellipse_path <- function(
         a = 2,  # long-arm
         b = 1,  # short-arm
         angle = 0,
-        density = 100,
-        set_label = "poly1"
+        density = 100
 ) {
     density <- density + 1
     radian <- (angle %% 360) * pi / 180
@@ -52,12 +43,13 @@ generate_ellipse_path <- function(
     x1 <- a * cos(theta) * cos(radian) - b * sin(theta) * sin(radian) + x0
     y1 <- b * sin(theta) * cos(radian) + a * cos(theta) * sin(radian) + y0
 
-    df0 <- data.frame(set_label = set_label, x = x1, y = y1)
-    return(df0)
+    mat0 <- as.matrix(data.frame(x = x1, y = y1))
+    return(mat0)
 }
 
 
-#' @title Plot a venn diagram
+#' @title
+#' Plot a 4 sets venn diagram
 #'
 #' @description
 #' Generate a list which contains:
@@ -67,7 +59,7 @@ generate_ellipse_path <- function(
 #' 4. Elements for each sets
 #' 5. Elements for each subsets
 #'
-#' @param data A named list.
+#' @param data A named list with at least length of 2.
 #' @param x0 The x coordinates for the center points of the ellipses (default: c(-1.1, 0, 0, 1.1)).
 #' @param y0 The y coordinates for the center points of the ellipses (default: c(-.6, 0, 0, -.6)).
 #' @param a The length of the long arm of the ellipses (default: c(2.5, 2.5, 2.5, 2.5)).
@@ -78,21 +70,22 @@ generate_ellipse_path <- function(
 #' @param ellipse_line_width (default: 0)
 #' @param ellipse_fill_color (default: c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"))
 #' @param ellipse_fill_alpha (default: 0.15)
-#' @param set_label A character vector. Replacement for the names of `data` (default: NULL).
+#' @param show_set_label Logical. Show the set names? (default: TRUE)
 #' @param set_label_position (default: list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)))
 #' @param set_label_family (default: "sans")
 #' @param set_label_size (default: 5)
 #' @param set_label_face (default: "bold")
 #' @param set_label_color (default: c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"))
 #' @param set_label_angle (default: c(-45, 0, 0, 45))
-#' @param zone_label A character vector. Labels for the subset. Exp., c("A", "B", "AB")
-#' @param zone_label_position Similar with `set_label_position.` A named list consists of `x` and `y` coordinates for each zone labels.
+#' @param show_zone_label Logical. Show the zone names? (default: TRUE)
+#' @param zone_label A character vector with length of 15. The zone names.
+#' @param zone_label_position A list contains two numeric vectors with length of 15, each for x and y coordinates. Similar with `set_label_position`.
 #' @param zone_label_family (default: "sans")
 #' @param zone_label_size (default: 3)
 #' @param zone_label_face (default: "bold.italic")
 #' @param zone_label_color (default: "black")
 #' @param zone_label_angle (default: 0)
-#' @param zone_count Show the number of elements for each zone? (default: TRUE)
+#' @param show_zone_count Logical. Show the number of elements for each zone? (default: TRUE)
 #' @param zone_count_position Similar with `zone_label_position`.
 #' @param zone_count_hjust Horizontally adjust the zone_count label position.
 #' @param zone_count_vjust Vertically adjust the zone_count label position.
@@ -101,7 +94,7 @@ generate_ellipse_path <- function(
 #' @param zone_count_face (default: "plain")
 #' @param zone_count_color (default: "grey30")
 #' @param zone_count_angle (default: 0)
-#' @param zone_percentage Show the percentage of `zone_count` for each zone? (default: TRUE).
+#' @param show_zone_percentage Logical. Show the percentage of `zone_count` for each zone? (default: TRUE).
 #' @param zone_percentage_digits Rounding for the percentage (default: 2).
 #' @param zone_percentage_position Similar with `zone_count_position`.
 #' @param zone_percentage_hjust Similar with `zone_count_hjust`.
@@ -131,9 +124,15 @@ generate_ellipse_path <- function(
 #'     Set_C = sample(s, 700),
 #'     Set_D = sample(s, 600)
 #' )
-#' generate_ellipse_4(venn_list)
+#' out <- generate_ellipse_4(venn_list)
+#' out$plot
 generate_ellipse_4 <- function(
-        data = list("Set A" = c(), "Set B" = c(), "Set C" = c(), "Set D" = c()),
+        data = list(
+            "Set A" = c(1, 2, 3, 4, 5, 7, 9),
+            "Set B" = c(3, 5, 7, 9, 12, 15),
+            "Set C" = c(1, 4, 5, 7, 9, 10, 13),
+            "Set D" = c(3, 4, 6, 10, 12, 14, 15)
+        ),
         x0 = c(-1.1, 0, 0, 1.1),
         y0 = c(-.6, 0, 0, -.6),
         a = c(2.5, 2.5, 2.5, 2.5),
@@ -144,9 +143,8 @@ generate_ellipse_4 <- function(
         ellipse_line_width = 0,
         ellipse_fill_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
         ellipse_fill_alpha = 0.15,
-
-        # Total is 4 sets
-        set_label = NULL,
+        ## Set label, 4 sets in total ====
+        show_set_label = TRUE,
         set_label_position = list(x = c(-2.5, -1.3, 1.3, 2.5),
                                   y = c(-1.5, 2.4, 2.4, -1.5)),
         set_label_family = rep("sans", times = 4),
@@ -154,8 +152,8 @@ generate_ellipse_4 <- function(
         set_label_face = rep("bold", times = 4),
         set_label_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
         set_label_angle = c(-45, 0, 0, 45),
-
-        # Total is 15 zone labels
+        ## Zone label, 15 zone labels in total ====
+        show_zone_label = TRUE,
         zone_label = c("A", "B", "C", "D",
                        "AB", "BC", "CD",
                        "AC", "AD", "BD",
@@ -178,8 +176,8 @@ generate_ellipse_4 <- function(
         zone_label_face = rep("bold.italic", times = 15),
         zone_label_color = rep("black", times = 15),
         zone_label_angle = rep(0, times = 15),
-
-        zone_count = TRUE,
+        ## Zone count ====
+        show_zone_count = TRUE,
         zone_count_position = list(
             x = c("A" = -2.4, "B" = -0.9, "C" = 0.9, "D" = 2.4,
                   "AB" = -1.5, "BC" = 0, "CD" = 1.5,
@@ -199,8 +197,8 @@ generate_ellipse_4 <- function(
         zone_count_face = rep("plain", times = 15),
         zone_count_color = rep("grey30", times = 15),
         zone_count_angle = rep(0, times = 15),
-
-        zone_percentage = TRUE,
+        ## Zone percentage
+        show_zone_percentage = TRUE,
         zone_percentage_digits = 2,
         zone_percentage_position = list(
             x = zone_count_position[["x"]],
@@ -214,26 +212,40 @@ generate_ellipse_4 <- function(
         zone_percentage_color = rep("grey50", times = 15),
         zone_percentage_angle = rep(0, times = 15)
 ) {
-    venny_df <- venny_df(data)
-    venny_df <- venny_df[match(venny_df[["zone_label"]], zone_label), ]
-
-    set_label <- if (is.null(set_label)) names(data) else paste("Set", LETTERS[1:4], sep = " ")
-
-    lst0 <- vector("list", 4)
-    for (i in 1:4)
-    {
-        tmp_df <- generate_ellipse_path(
-            x0[i], y0[i],
-            a[i], b[i],
-            ellipse_angle[i], ellipse_density[i],
-            set_label[i]
-        )
-        lst0[[i]] <- tmp_df
+    if (is.null(data) || length(data) < 2 || !is.list(data)) {
+        warning("`data` should be a list with at least two sets.")
+        return(NULL)
     }
-    names(lst0) <- set_label
 
-    plot_df <- do.call(rbind.data.frame, lst0)
-    rownames(plot_df) <- NULL
+    n_sets <- length(data)
+    set_label <- names(data)
+
+    if (is.null(set_label)) {
+        show_set_label <- FALSE
+        set_label <- LETTERS[ 1 : n_sets ]
+    }
+
+    venny_df_ <- venny_df(data)
+    zone_order_default <- c("A", "B", "C", "D", "AB", "BC", "CD", "AC", "AD", "BD", "ABC", "BCD", "ACD", "ABD", "ABCD")
+    venny_df_ <- venny_df_[match(rownames(venny_df_), zone_order_default), ]
+
+    ellipse_path <- vector("list", length(data))
+    for (i in seq_along(data))
+    {
+        ellipse_path[[i]] <- generate_ellipse_path(
+            x0[i], y0[i], a[i], b[i],
+            ellipse_angle[i], ellipse_density[i]
+        )
+    }
+    names(ellipse_path) <- set_label
+
+    plot_df <- data.frame()
+    for (i in seq_along(ellipse_path))
+    {
+        tmp_df <- as.data.frame(ellipse_path[[i]])
+        tmp_df["set_label"] <- names(ellipse_path[i])
+        plot_df <- rbind(plot_df, tmp_df)
+    }
 
     # Assign `x` and `y` as `NULL` is just for avoiding the
     # "undefined global variable x, y" message,
@@ -254,7 +266,7 @@ generate_ellipse_4 <- function(
         )
 
     # Set label
-    if (is.character(set_label))
+    if (isTRUE(show_set_label))
     {
         p0 <- p0 +
             ggplot2::annotate(
@@ -271,7 +283,7 @@ generate_ellipse_4 <- function(
     }
 
     # Zone label
-    if (is.character(zone_label))
+    if (isTRUE(show_zone_label))
     {
         p0 <- p0 +
             ggplot2::annotate(
@@ -288,14 +300,14 @@ generate_ellipse_4 <- function(
     }
 
     # Zone count value
-    if (isTRUE(zone_count))
+    if (isTRUE(show_zone_count))
     {
         p0 <- p0 +
             ggplot2::annotate(
                 geom = "text",
                 x = zone_count_position[["x"]] + zone_count_hjust,
                 y = zone_count_position[["y"]] + zone_count_vjust,
-                label = venny_df[["n_elements"]],
+                label = venny_df_[["n_elements"]],
                 family = zone_count_family,
                 fontface = zone_count_face,
                 size = zone_count_size,
@@ -305,9 +317,9 @@ generate_ellipse_4 <- function(
     }
 
     # Zone percentage value
-    if (isTRUE(zone_percentage))
+    if (isTRUE(show_zone_percentage))
     {
-        percentage <- round(venny_df[["percentage"]], zone_percentage_digits)
+        percentage <- round(venny_df_[["percentage"]], zone_percentage_digits)
         percentage <- paste0("(", percentage, "%)")
         p0 <- p0 +
             ggplot2::annotate(
@@ -338,9 +350,9 @@ generate_ellipse_4 <- function(
     ret <- list(
         plot = p0,
         ellipse_path = ellipse_path,
-        venny_df = venny_df,
-        set_elements = attr(venny_df, "set_elements"),
-        zone_elements = attr(venny_df, "zone_elements")
+        venny_df = venny_df_,
+        set_elements = attr(venny_df_, "set_elements"),
+        zone_elements = attr(venny_df_, "zone_elements")
     )
     class(ret) <- c(class(ret), "venny", "ellipses")
 

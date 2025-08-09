@@ -7,17 +7,18 @@
 generate_ellipse_path(x0 = 0, y0 = 0, a = 2, b = 1, angle = 0, density = 100)
 }
 \arguments{
-\item{x0}{The coordinate x of the polygon center point (default: 0).}
+\item{x0}{(default: 0) The coordinate x of the polygon center point.}
 
-\item{y0}{The coordinate y of the polygon center point (default: 0).}
+\item{y0}{(default: 0) The coordinate y of the polygon center point.}
 
-\item{a}{Long arm (default: 2).}
+\item{a}{(default: 2) Long arm.}
 
-\item{b}{Short arm (default: 1).}
+\item{b}{(default: 1) Short arm.}
 
 \item{angle}{(default: 0) Rotation angle (degree).}
 
-\item{density}{Generate how many points? Greater amount of points yield smoother ellipse (default: 100).}
+\item{density}{(default: 100)
+Generate how many points? Greater amount of points yield smoother ellipse.}
 }
 \value{
 A data.frame with the point coordinates (x, y) to construct the polygon
@@ -27,16 +28,14 @@ Generate Ellipse Path
 }
 \examples{
 library(ggplot2)
-
 # Draw a circle
-generate_ellipse_path(a = 1, b = 1, density = 100) |>
-ggplot(aes(x, y)) +
+circle <- generate_ellipse_path(a = 1, b = 1, density = 100)
+ggplot(circle, aes(x, y)) +
     geom_polygon() +
     coord_fixed()
-
 # Draw an ellipse
-generate_ellipse_path(a = 2, b = 1, angle = 45) |>
-ggplot(aes(x, y)) +
+ellipse <- generate_ellipse_path(a = 2, b = 1, angle = 45)
+ggplot(ellipse, aes(x, y)) +
     geom_polygon() +
     coord_fixed()
 }
