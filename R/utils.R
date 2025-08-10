@@ -149,6 +149,16 @@ venny_df <- function(sets = list())
     return(ret)
 }
 
+fixed_length <- function(x, len)
+{
+    len <- as.integer(len)
+    if ( is.null(x) || ! is.atomic(x) || ! is.null(dim(x)) ) stop("Accept only vector.")
+    if ( ! is.integer(len) ) stop("`length` should be an integer greater than 0.")
+    if (len < 1) len <- 1L
+    if (length(x) == len) return(x)
+    if (length(x) < len) x <- rep(x, times = ceiling(len / length(x)))
+    return(x[1:len])
+}
 
 
 # data <- data.frame(
