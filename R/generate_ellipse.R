@@ -105,8 +105,7 @@ generate_ellipse_path <- function(
 #' @param zone_percentage_color Font color for the zone percentage.
 #' @param zone_percentage_angle Font rotation angle in degree for the zone percentage.
 #'
-#' @returns
-#' A list which contains:
+#' @returns A list which contains:
 #' 1. plot: A venn diagram;
 #' 2. ellipse_path: Polygon path of each ellipses;
 #' 3. venny_df: A summary table;
