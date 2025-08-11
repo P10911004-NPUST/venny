@@ -1,13 +1,13 @@
 # venny
 
-This is an R package for gene expression analysis by inferencing the venn diagram (upset plot is not yet provided).  
-The primary goal of `venny` is to provide a convenient way to extract target genes after differentially expressed genes (DEG) analysis.
-Although the plotting function of `venny` may not as robust as other packages, it already sufficient for producing publication-ready plot.  
-If more advance plot is required, you may consider other packages such as `ggVennDiagram`, `ggvenn`, and `UpSetR`.
+`venny` is an R package for gene expression analysis with a focus on Venn diagram visualization (UpSet plot support not yet available).  
+It offers a simple and efficient way to extract target genes after DEG analysis, and can produce publication-ready plots out of the box.  
+For more advanced or customizable visualizations, consider other packages such as `ggVennDiagram`, `ggvenn`, or `UpSetR`.
 
 ## Installation
 
 You can install the development version of `venny` from [GitHub](https://github.com/P10911004-NPUST/venny) with:
+
 ``` r
 if ( ! require(devtools) ) install.packages("devtools")
 devtools::install_github("P10911004-NPUST/venny")
@@ -24,5 +24,8 @@ lst <- list(
     Set_C = sample(s, 900),
     Set_D = sample(s, 600)
 )
-venny(lst[1:3])
+e3 <- venny(lst[1:3])
+e3$plot
+e4 <- venny(lst[1:4])
+e4$plot
 ```

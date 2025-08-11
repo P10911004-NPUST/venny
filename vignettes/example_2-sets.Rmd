@@ -1,0 +1,159 @@
+---
+title: "Vignette &mdash; `venny`"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Vignette &mdash; `venny`}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+  
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = FALSE,
+    comment = "#>"
+)
+```
+
+## Install
+
+This vignette requires five packages to work with. Make sure they are installed.
+
+- `tidyverse`: data manipulation;
+- `DESeq2`: differentially expressed gene (DEG) analysis;
+- `clusterProfiler`: gene ontology analysis;
+- `venny`: target genes extraction and venn diagram plotting.
+
+```{r setup, message=FALSE}
+# if (!require(tidyverse)) install.packages("tidyverse")
+# if (!require(devtools)) install.packages("devtools")
+# if (!require(BiocManager)) install.packages("BiocManager")
+# if (!require(org.At.tair.db)) BiocManager::install("org.At.tair.db", ask = FALSE)
+# if (!require(DESeq2)) BiocManager::install("DESeq2", ask = FALSE)
+# if (!require(clusterProfiler)) BiocManager::install("clusterProfiler", ask = FALSE)
+# if (!require(venny)) devtools::install_github("P10911004-NPUST/venny")
+library(tidyverse)
+library(org.At.tair.db)
+library(DESeq2)
+library(clusterProfiler)
+library(venny)
+```
+
+## Data
+
+```{r}
+cmat <- LGL23$count_matrix
+sample_info <- LGL23$sample_info
+```
+
+## DEGs
+
+Two sets of up-regulated DEGs (`set_A` and `set_B`) are selected.
+
+- `set_A`: Genes that are up-regulated under low concentration treatment, compare to mock.
+- `set_B`: Genes that are up-regulated under high concentration treatment, compare to mock.
+
+```{r, message=FALSE}
+dds <- DESeq2::DESeqDataSetFromMatrix(
+    countData = cmat,
+    colData = sample_info,
+    design = ~ group
+)
+dds <- DESeq2::DESeq(dds)
+
+set_A <- DESeq2::results(dds, contrast = c("group", "WT_low", "WT_mock")) %>%
+    as.data.frame() %>%
+    filter(padj < 0.05, log2FoldChange > 0) %>%
+    rownames()
+
+set_B <- DESeq2::results(dds, c("group", "WT_high", "WT_mock")) %>%
+    as.data.frame() %>%
+    filter(padj < 0.05, log2FoldChange > 0) %>%
+    rownames()
+```
+
+## Venn diagram (2 sets)
+
+The 2 sets venn diagram delivers 3 subsets (refer as "zones" here), i.e. A, AB, and B.
+
+The zones AB consists of genes (869 genes, 21.69%) that are gradually up-regulated along treatment concentration.
+
+```{r, fig.cap="A two-sets venn diagram."}
+out <- venny(data = list(A = set_A, B = set_B))
+
+zone_AB_polygon <- out$ellipse_path$A %>%
+    polygon_intersect(out$ellipse_path$B) %>%
+    as.data.frame()
+
+out$plot +
+    geom_polygon(
+        inherit.aes = FALSE,
+        data = zone_AB_polygon,
+        mapping = aes(x, y),
+        fill = NA,
+        color = "red",
+        linewidth = 2
+    )
+```
+
+## GO analysis
+
+```{r}
+GO <- clusterProfiler::enrichGO(
+    gene = out$zone_elements$AB,
+    OrgDb = org.At.tair.db,
+    keyType = "TAIR",
+    ont = "BP",
+    pvalueCutoff = 0.01,
+    qvalueCutoff = 0.05
+) %>% 
+    clusterProfiler::simplify() %>% 
+    .@result
+
+GO %>% 
+    slice_max(RichFactor, n = 10) %>% 
+    ggplot(
+        aes(
+            x = RichFactor, 
+            y = fct_reorder(Description, RichFactor), 
+            color = p.adjust, 
+            size = Count
+        )
+    ) +
+    theme_bw() +
+    labs(x = "Rich factor", y = "Description") +
+    geom_point() +
+    scale_y_discrete(labels = function(x) str_wrap(x, 25)) +
+    scale_color_gradientn(
+            colours = c("#1d3557", "#457b9d", "#a8dadc"),
+            trans = "log10",
+            guide = guide_colorbar(
+                reverse = FALSE,
+                order = 1,
+                theme = theme(legend.key.size = grid::unit(1, "cm"))
+            )
+        )
+```
+
+## Genes of interest based on GO analysis
+
+```{r}
+GOI <- GO %>% 
+    filter(str_detect(Description, ".*cell division.*")) %>% 
+    pull(geneID) %>% 
+    str_split_1("/")
+```
+
+## Gene functions description
+
+```{r}
+GFD <- LGL23$GFD %>% 
+    filter(gene_id %in% GOI) %>% 
+    dplyr::select(gene_id, symbol, full_name, Curator_summary)
+```
+
+
+
+```{r, eval=FALSE}
+# rmarkdown::render("./vignettes/example_2-sets.Rmd", clean = FALSE, envir = new.env(), quiet = FALSE)
+```
+

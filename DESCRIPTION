@@ -15,3 +15,12 @@ Imports:
 Depends: 
     R (>= 3.5)
 LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown,
+    tidyverse,
+    BiocManager,
+	org.At.tair.db,
+	DESeq2,
+	clusterProfiler
+VignetteBuilder: knitr
