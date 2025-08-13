@@ -18,10 +18,11 @@ generate_ellipse_2(
   ellipse_line_width = 0,
   ellipse_fill_color = c("#D55E00", "#0072B2"),
   ellipse_fill_alpha = 0.2,
+  text_size = 7,
   show_set_label = TRUE,
   set_label_position = list(x = c(-0.5, 0.5), y = c(1.15, 1.15)),
   set_label_family = "sans",
-  set_label_size = 7,
+  set_label_size = text_size,
   set_label_face = "bold",
   set_label_color = c("#D55E00", "#0072B2"),
   set_label_angle = 0,
@@ -30,28 +31,28 @@ generate_ellipse_2(
   zone_label_position = list(x = c(A = -1, B = 1, AB = 0), y = c(A = 0.3, B = 0.3, AB =
     0.3)),
   zone_label_family = "sans",
-  zone_label_size = 6,
+  zone_label_size = text_size - 1,
   zone_label_face = "bold.italic",
   zone_label_color = "black",
   zone_label_angle = 0,
   show_zone_count = TRUE,
   zone_count_position = list(x = zone_label_position[["x"]], y =
-    zone_label_position[["y"]] - 0.3),
+    zone_label_position[["y"]] - 0.35),
   zone_count_hjust = 0,
   zone_count_vjust = 0,
   zone_count_family = "sans",
-  zone_count_size = 6,
+  zone_count_size = text_size - 1,
   zone_count_face = "plain",
   zone_count_color = "grey30",
   zone_count_angle = 0,
   show_zone_percentage = TRUE,
   zone_percentage_digits = 2,
   zone_percentage_position = list(x = zone_count_position[["x"]], y =
-    zone_count_position[["y"]] - 0.2),
+    zone_count_position[["y"]] - 0.3),
   zone_percentage_hjust = 0,
   zone_percentage_vjust = 0,
   zone_percentage_family = "sans",
-  zone_percentage_size = 5,
+  zone_percentage_size = text_size - 2,
   zone_percentage_face = "plain",
   zone_percentage_color = "grey40",
   zone_percentage_angle = 0
@@ -70,6 +71,7 @@ generate_ellipse_3(
   ellipse_line_width = 0,
   ellipse_fill_color = c("#CC79A7", "#E69F00", "#56B4E9"),
   ellipse_fill_alpha = 0.2,
+  text_size = 7,
   show_set_label = TRUE,
   set_label_position = list(x = c(0, -1.4, 1.4), y = c(1.65, 0.3, 0.3)),
   set_label_family = "sans",
@@ -124,10 +126,11 @@ generate_ellipse_4(
   ellipse_line_width = 0,
   ellipse_fill_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   ellipse_fill_alpha = 0.2,
+  text_size = 7,
   show_set_label = TRUE,
   set_label_position = list(x = c(-2.5, -1.3, 1.3, 2.5), y = c(-1.5, 2.4, 2.4, -1.5)),
   set_label_family = rep("sans", times = 4),
-  set_label_size = rep(5, times = 4),
+  set_label_size = text_size - 2,
   set_label_face = rep("bold", times = 4),
   set_label_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
   set_label_angle = c(-45, 0, 0, 45),
@@ -192,6 +195,8 @@ generate_ellipse_4(
 \item{ellipse_fill_color}{Ellipses fill color.}
 
 \item{ellipse_fill_alpha}{Ellipses transparency.}
+
+\item{text_size}{Text size (default: 7). Will be overriden by \code{set_label_size}, \code{zone_label_size}, and \code{zone_percentage_size}.}
 
 \item{show_set_label}{Logical. Show the set names (default: TRUE).}
 

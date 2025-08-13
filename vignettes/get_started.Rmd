@@ -1,8 +1,8 @@
 ---
-title: "Vignette &mdash; `venny`"
+title: "Get started with `venny`"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{Vignette &mdash; `venny`}
+    %\VignetteIndexEntry{Get started with `venny`}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 ---
@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 This vignette requires five packages to work with. Make sure they are installed.
 
 - `tidyverse`: data manipulation;
+- `org.At.tair.db`: *Arabidopsis thaliana* database;
 - `DESeq2`: differentially expressed gene (DEG) analysis;
 - `clusterProfiler`: gene ontology analysis;
 - `venny`: target genes extraction and venn diagram plotting.
@@ -50,7 +51,7 @@ sample_info <- LGL23$sample_info
 Two sets of up-regulated DEGs (`set_A` and `set_B`) are selected.
 
 - `set_A`: Genes that are up-regulated under low concentration treatment, compare to mock.
-- `set_B`: Genes that are up-regulated under high concentration treatment, compare to mock.
+- `set_B`: Genes that are up-regulated under high concentration treatment, compare to low concentration
 
 ```{r, message=FALSE}
 dds <- DESeq2::DESeqDataSetFromMatrix(
@@ -59,13 +60,15 @@ dds <- DESeq2::DESeqDataSetFromMatrix(
     design = ~ group
 )
 dds <- DESeq2::DESeq(dds)
+# saveRDS(dds, "../data-raw/dds.rds")
+# dds <- readRDS("../data-raw/dds.rds")
 
 set_A <- DESeq2::results(dds, contrast = c("group", "WT_low", "WT_mock")) %>%
     as.data.frame() %>%
     filter(padj < 0.05, log2FoldChange > 0) %>%
     rownames()
 
-set_B <- DESeq2::results(dds, c("group", "WT_high", "WT_mock")) %>%
+set_B <- DESeq2::results(dds, c("group", "WT_high", "WT_low")) %>%
     as.data.frame() %>%
     filter(padj < 0.05, log2FoldChange > 0) %>%
     rownames()
@@ -77,8 +80,8 @@ The 2 sets venn diagram delivers 3 subsets (refer as "zones" here), i.e. A, AB, 
 
 The zones AB consists of genes (869 genes, 21.69%) that are gradually up-regulated along treatment concentration.
 
-```{r, fig.cap="A two-sets venn diagram."}
-out <- venny(data = list(A = set_A, B = set_B))
+```{r venn, out.width="50%", fig.align='center', fig.dpi=660, fig.dim=c(2, 1.5), fig.cap="A two-sets venn diagram."}
+out <- venny(data = list(A = set_A, B = set_B), text_size = 4)
 
 zone_AB_polygon <- out$ellipse_path$A %>%
     polygon_intersect(out$ellipse_path$B) %>%
@@ -97,7 +100,7 @@ out$plot +
 
 ## GO analysis
 
-```{r}
+```{r go-dotplot, out.width="95%", fig.align='center', fig.dpi=1200, fig.dim=c(5, 3), fig.cap="Gene ontology"}
 GO <- clusterProfiler::enrichGO(
     gene = out$zone_elements$AB,
     OrgDb = org.At.tair.db,
@@ -109,20 +112,22 @@ GO <- clusterProfiler::enrichGO(
     clusterProfiler::simplify() %>% 
     .@result
 
-GO %>% 
-    slice_max(RichFactor, n = 10) %>% 
+GO_top10 <- GO %>% slice_max(RichFactor, n = 10)
+
+GO_top10 %>% 
     ggplot(
         aes(
             x = RichFactor, 
             y = fct_reorder(Description, RichFactor), 
-            color = p.adjust, 
+            color = qvalue, 
             size = Count
         )
     ) +
     theme_bw() +
     labs(x = "Rich factor", y = "Description") +
     geom_point() +
-    scale_y_discrete(labels = function(x) str_wrap(x, 25)) +
+    scale_x_continuous(limits = c(0.1, 0.5)) +
+    scale_y_discrete(labels = function(x) str_wrap(x, 40)) +
     scale_color_gradientn(
             colours = c("#1d3557", "#457b9d", "#a8dadc"),
             trans = "log10",
@@ -131,29 +136,34 @@ GO %>%
                 order = 1,
                 theme = theme(legend.key.size = grid::unit(1, "cm"))
             )
-        )
+        ) +
+    theme(
+        text = element_text(size = 8)
+    )
 ```
 
 ## Genes of interest based on GO analysis
 
+Extract the cell division and meristem related genes from the GO term and search for the gene functional descriptions.
+
 ```{r}
-GOI <- GO %>% 
-    filter(str_detect(Description, ".*cell division.*")) %>% 
+GOI <- GO_top10 %>% 
+    filter(str_detect(Description, "cell division|meristem")) %>% 
     pull(geneID) %>% 
+    paste(collapse = "/") %>% 
     str_split_1("/")
-```
 
-## Gene functions description
-
-```{r}
 GFD <- LGL23$GFD %>% 
     filter(gene_id %in% GOI) %>% 
-    dplyr::select(gene_id, symbol, full_name, Curator_summary)
+    select("gene_id", "symbol", "full_name", "Curator_summary")
+
+
 ```
 
 
 
-```{r, eval=FALSE}
+
+```{r, eval=FALSE, echo=FALSE}
 # rmarkdown::render("./vignettes/example_2-sets.Rmd", clean = FALSE, envir = new.env(), quiet = FALSE)
 ```
 

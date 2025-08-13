@@ -70,6 +70,7 @@ generate_ellipse_path <- function(
 #' @param ellipse_line_width Ellipses boundary width.
 #' @param ellipse_fill_color Ellipses fill color.
 #' @param ellipse_fill_alpha Ellipses transparency.
+#' @param text_size Text size (default: 7). Will be overriden by `set_label_size`, `zone_label_size`, and `zone_percentage_size`.
 #' @param show_set_label Logical. Show the set names (default: TRUE).
 #' @param set_label_position A list of length two with the xy coordinates (exp., list(x = 1:10, y = 1:10)).
 #' @param set_label_family Font family for the set labels.
@@ -147,13 +148,14 @@ generate_ellipse_2 <- function(
         ellipse_line_width = 0,
         ellipse_fill_color = c("#D55E00", "#0072B2"),
         ellipse_fill_alpha = 0.2,
+        text_size = 5,
         show_set_label = TRUE,
         set_label_position = list(
             x = c(-0.5, 0.5),
             y = c(1.15, 1.15)
         ),
         set_label_family = "sans",
-        set_label_size = 7,
+        set_label_size = text_size,
         set_label_face = "bold",
         set_label_color = c("#D55E00", "#0072B2"),
         set_label_angle = 0,
@@ -164,19 +166,19 @@ generate_ellipse_2 <- function(
             y = c("A" = 0.3, "B" = 0.3, "AB" = 0.3)
         ),
         zone_label_family = "sans",
-        zone_label_size = 6,
+        zone_label_size = text_size - 1,
         zone_label_face = "bold.italic",
         zone_label_color = "black",
         zone_label_angle = 0,
         show_zone_count = TRUE,
         zone_count_position = list(
             x = zone_label_position[["x"]],
-            y = zone_label_position[["y"]] - 0.3
+            y = zone_label_position[["y"]] - 0.35
         ),
         zone_count_hjust = 0,
         zone_count_vjust = 0,
         zone_count_family = "sans",
-        zone_count_size = 6,
+        zone_count_size = text_size - 1,
         zone_count_face = "plain",
         zone_count_color = "grey30",
         zone_count_angle = 0,
@@ -184,12 +186,12 @@ generate_ellipse_2 <- function(
         zone_percentage_digits = 2,
         zone_percentage_position = list(
             x = zone_count_position[["x"]],
-            y = zone_count_position[["y"]] - 0.2
+            y = zone_count_position[["y"]] - 0.3
         ),
         zone_percentage_hjust = 0,
         zone_percentage_vjust = 0,
         zone_percentage_family = "sans",
-        zone_percentage_size = 5,
+        zone_percentage_size = text_size - 2,
         zone_percentage_face = "plain",
         zone_percentage_color = "grey40",
         zone_percentage_angle = 0
@@ -367,13 +369,14 @@ generate_ellipse_3 <- function(
         ellipse_line_width = 0,
         ellipse_fill_color = c("#CC79A7", "#E69F00", "#56B4E9"),
         ellipse_fill_alpha = 0.2,
+        text_size = 7,
         show_set_label = TRUE,
         set_label_position = list(
             x = c(0, -1.4, 1.4),
             y = c(1.65, 0.3, 0.3)
         ),
         set_label_family = "sans",
-        set_label_size = 5,
+        set_label_size = text_size - 2,
         set_label_face = "bold",
         set_label_color = c("#CC79A7", "#E69F00", "#56B4E9"),
         set_label_angle = c(0, 45, -45),
@@ -384,7 +387,7 @@ generate_ellipse_3 <- function(
             y = c("A" = 1.3, "B" = -.2, "C" = -.2, "AB" = .4, "AC" = .4, "BC" = -.65, "ABC" = .2)
         ),
         zone_label_family = "sans",
-        zone_label_size = 3,
+        zone_label_size = text_size - 4,
         zone_label_face = "bold.italic",
         zone_label_color = "black",
         zone_label_angle = 0,
@@ -396,7 +399,7 @@ generate_ellipse_3 <- function(
         zone_count_hjust = 0,
         zone_count_vjust = 0,
         zone_count_family = "sans",
-        zone_count_size = 4,
+        zone_count_size = text_size - 3,
         zone_count_face = "plain",
         zone_count_color = "grey30",
         zone_count_angle = 0,
@@ -409,7 +412,7 @@ generate_ellipse_3 <- function(
         zone_percentage_hjust = 0,
         zone_percentage_vjust = 0,
         zone_percentage_family = "sans",
-        zone_percentage_size = 3.5,
+        zone_percentage_size = text_size - 3.5,
         zone_percentage_face = "plain",
         zone_percentage_color = "grey40",
         zone_percentage_angle = 0
@@ -585,16 +588,17 @@ generate_ellipse_4 <- function(
         b = c(1.35, 1.2, 1.2, 1.35),
         ellipse_angle = c(-45, -50, 50, 45),
         ellipse_density = c(200, 200, 200, 200),
-        ellipse_line_color = rep("transparent", 4),
+        ellipse_line_color = "transparent",
         ellipse_line_width = 0,
         ellipse_fill_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
         ellipse_fill_alpha = 0.2,
+        text_size = 7,
         show_set_label = TRUE,
         set_label_position = list(x = c(-2.5, -1.3, 1.3, 2.5),
                                   y = c(-1.5, 2.4, 2.4, -1.5)),
-        set_label_family = rep("sans", times = 4),
-        set_label_size = rep(5, times = 4),
-        set_label_face = rep("bold", times = 4),
+        set_label_family = "sans",
+        set_label_size = text_size - 2,
+        set_label_face = "bold",
         set_label_color = c("#CC79A7", "#009E73", "#E69F00", "#56B4E9"),
         set_label_angle = c(-45, 0, 0, 45),
         show_zone_label = TRUE,
@@ -616,7 +620,7 @@ generate_ellipse_4 <- function(
                   "ABCD" = -0.3)
         ),
         zone_label_family = "sans",
-        zone_label_size = 3,
+        zone_label_size = text_size - 4,
         zone_label_face = "bold.italic",
         zone_label_color = "black",
         zone_label_angle = 0,
@@ -636,7 +640,7 @@ generate_ellipse_4 <- function(
         zone_count_hjust = 0,
         zone_count_vjust = 0,
         zone_count_family = "sans",
-        zone_count_size = 4,
+        zone_count_size = text_size - 3,
         zone_count_face = "plain",
         zone_count_color = "grey30",
         zone_count_angle = 0,
@@ -649,7 +653,7 @@ generate_ellipse_4 <- function(
         zone_percentage_hjust = 0,
         zone_percentage_vjust = 0,
         zone_percentage_family = "sans",
-        zone_percentage_size = 3.5,
+        zone_percentage_size = text_size - 3.5,
         zone_percentage_face = "plain",
         zone_percentage_color = "grey40",
         zone_percentage_angle = 0
@@ -718,6 +722,7 @@ generate_ellipse_4 <- function(
     # Plot ellipses
     p0 <- ggplot2::ggplot(plot_df, ggplot2::aes(x, y, color = set_label, fill = set_label)) +
         ggplot2::theme_void() +
+        # ggplot2::theme_linedraw() +
         ggplot2::coord_fixed() +
         ggplot2::geom_polygon(alpha = ellipse_fill_alpha) +
         ggplot2::scale_color_manual(values = ellipse_line_color) +
