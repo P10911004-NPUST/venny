@@ -36,7 +36,7 @@ highlight(
 A ggplot object.
 }
 \description{
-A handy wrapper for the \code{ggplot2::geom_polygon()} usedd to represent the
+A handy wrapper for the \code{ggplot2::geom_polygon()} used to represent the
 result of set operations.
 }
 \examples{

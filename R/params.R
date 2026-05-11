@@ -38,7 +38,8 @@ ellipse_position <- function() {
 
 #' Control the ellipse textures
 #'
-#' This is an internal function used to control the ellipse line color and transparency.
+#' This is used to generate the ellipse line color and transparency parameters,
+#' for passing into the `venny()`s `ellipse.line` argument.
 #'
 #' @param linetype A character.
 #'      The options are: blank, solid, dashed, dotted, dotdash, longdash, twodash.
@@ -104,7 +105,8 @@ set_label_default <- function(n_sets) {
 
 #' Set label position
 #'
-#' Generate the coordinates for the set labels.
+#' Generate the coordinates for the set labels. This is passed into the `venny()`'s
+#' `set.label.position` arguments.
 #'
 #' @param hjust A numeric vector (default: 0).
 #'      Horizontal adjustment, adjust the x-axis coordinates of the set labels.
@@ -140,11 +142,12 @@ set_label_position <- function(
             "C"   = c( 1.4, 0.30)
         ),
         list(
-            "A" = c(-2.45, 1.75),
+            # "A" = c(-2.45, 1.75),
+            "A" = c(-2.45, -1.5),
             "B" = c(-1.3,  2.4),
             "C" = c( 1.3,  2.4),
-            "D" = c(2.45, 1.75)
-            # "D" = c( 2.5, -1.5)
+            # "D" = c(2.45, 1.75)
+            "D" = c( 2.45, -1.5)
         )
     )
 

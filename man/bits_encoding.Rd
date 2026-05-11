@@ -4,12 +4,15 @@
 \alias{bits_encoding}
 \title{Create a bits matrix}
 \usage{
-bits_encoding(x, sep = ":")
+bits_encoding(x, rownames = TRUE, sep = "")
 }
 \arguments{
 \item{x}{A character vector.}
 
-\item{sep}{A character used to separate the group names (default is \code{:}).}
+\item{rownames}{Logical (default: TRUE). Whether to show rownames.}
+
+\item{sep}{A character used to separate the group names (default is \code{""}).
+Only working when \code{rownames = TRUE}.}
 }
 \value{
 A numeric matrix with values of 0 or 1.
@@ -18,5 +21,5 @@ A numeric matrix with values of 0 or 1.
 Produce a bits matrix for all possible combinations of the input sets.
 }
 \examples{
-bits_encoding(c("qqa", "bnk", "sdf", "123"))
+bits_encoding(c("A", "B", "C", "D"))
 }

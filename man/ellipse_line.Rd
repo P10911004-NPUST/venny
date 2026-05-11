@@ -31,7 +31,8 @@ The options are: blank, solid, dashed, dotted, dotdash, longdash, twodash.}
 A list contains "color" and "alpha" values.
 }
 \description{
-This is an internal function used to control the ellipse line color and transparency.
+This is used to generate the ellipse line color and transparency parameters,
+for passing into the \code{venny()}s \code{ellipse.line} argument.
 }
 \seealso{
 \code{\link[=ellipse_fill]{ellipse_fill()}}

@@ -70,15 +70,6 @@ A venn diagram which is a \code{ggplot} object.
 Venn diagram
 }
 \examples{
-venny(
-    data = list(
-        1:351,
-        243:1579,
-        156:711,
-        388:942
-    ),
-    subset.label = list(A = "1 + 2 = ?", ABC = "888", CD = "", D = ""),
-    subset.count.position = subset_count_position(hide = c("AB", "C", "D")),
-    subset.percentage.position = subset_count_position(hide = "D")
-)
+lst <- LGL23$DEGs
+venny(lst)
 }

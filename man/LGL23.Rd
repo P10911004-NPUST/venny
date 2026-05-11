@@ -5,7 +5,7 @@
 \alias{LGL23}
 \title{RNA-seq data}
 \format{
-An object of class \code{list} of length 3.
+An object of class \code{list} of length 4.
 }
 \usage{
 LGL23

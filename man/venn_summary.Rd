@@ -4,7 +4,7 @@
 \alias{venn_summary}
 \title{Create a \code{venny} summary data.frame}
 \usage{
-venn_summary(data = list(), show_elements = TRUE)
+venn_summary(data = list(), show_elements = FALSE)
 }
 \arguments{
 \item{data}{A named list contains 2 ~ 26 sets of elements.
@@ -20,13 +20,5 @@ A data frame contains necessary information for subsequent inferences and plotti
 A data.frame consists of each combination of the input sets.
 }
 \examples{
-s <- 1:150
-venn_list <- list(
-    sample(s, 50),
-    sample(s, 37),
-    sample(s, 46),
-    sample(s, 41)
-)
-df0 <- venn_summary(venn_list)
-df0
+venn_summary(LGL23$DEGs)
 }

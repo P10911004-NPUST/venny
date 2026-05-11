@@ -26,17 +26,8 @@
 #' @export
 #'
 #' @examples
-#' venny(
-#'     data = list(
-#'         1:351,
-#'         243:1579,
-#'         156:711,
-#'         388:942
-#'     ),
-#'     subset.label = list(A = "1 + 2 = ?", ABC = "888", CD = "", D = ""),
-#'     subset.count.position = subset_count_position(hide = c("AB", "C", "D")),
-#'     subset.percentage.position = subset_count_position(hide = "D")
-#' )
+#' lst <- LGL23$DEGs
+#' venny(lst)
 venny <- function(
         data,
         detail = FALSE,
@@ -126,8 +117,7 @@ venny <- function(
                 NA,
                 0,
                 c(0, 45, -45),
-                # c(0, 0, -48, 48)
-                c(0, 0, 0, 0)
+                c(-48, 0, 0, 48)
             )
         }
 
@@ -307,5 +297,3 @@ venny <- function(
         )
     }
 }
-
-

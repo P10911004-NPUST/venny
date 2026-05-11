@@ -63,9 +63,9 @@ setdiff <- function(x, y, ...) UseMethod("setdiff")
 #' @export
 intersect.default <- function(x, y, ...) base::intersect(x, y)
 #' @export
-union.default <- function(x, y, ...) base::intersect(x, y)
+union.default <- function(x, y, ...) base::union(x, y)
 #' @export
-setdiff.default <- function(x, y, ...) base::intersect(x, y)
+setdiff.default <- function(x, y, ...) base::setdiff(x, y)
 
 
 #' @rdname setops
@@ -191,7 +191,7 @@ if (FALSE)
 
 #' Draw polygons
 #'
-#' A handy wrapper for the `ggplot2::geom_polygon()` usedd to represent the
+#' A handy wrapper for the `ggplot2::geom_polygon()` used to represent the
 #' result of set operations.
 #'
 #' @param venn Venn diagram produced from `venny::venny()`.

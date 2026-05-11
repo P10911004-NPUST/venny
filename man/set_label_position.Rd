@@ -31,7 +31,8 @@ Each named list contains the x, y coordinates of the set labels for
 different venn diagram (2, 3, or 4 ellipses), respectively.
 }
 \description{
-Generate the coordinates for the set labels.
+Generate the coordinates for the set labels. This is passed into the \code{venny()}'s
+\code{set.label.position} arguments.
 }
 \examples{
 set_label_position()
