@@ -6,13 +6,13 @@
 #'      Otherwise, output only venn diagram.
 #' @param ellipse.line A list. See `ellipse_line()`.
 #' @param ellipse.fill A list. See `ellipse_fill()`.
-#' @param ellipse.density Integer (default: 200). Higher value yield smoother ellipse.
+#' @param ellipse.density An integer (default: 200L). Higher value yield smoother ellipse.
 #' @param set.label Logical (default: TRUE). If TRUE, show the set labels.
 #' @param set.label.position A list. See `set_label_position()`.
 #' @param set.label.font A list. See `set_label_font()`.
 #' @param subset.label Logical (default: TRUE). If TRUE, show the subset labels.
 #'      If a named list is provided, then the selected subset name will be renamed.
-#'      For example, list(AB = "new_AB") will change the original subset AB name to "new_AB".
+#'      For example, `list(AB = "new_AB")` will change the original subset AB name to "new_AB".
 #' @param subset.label.position A list. See `subset_label_position()`.
 #' @param subset.label.font A list. See `subset_label_font()`.
 #' @param subset.count Logical (default: TRUE). If TRUE, show the element counts for each subset.
@@ -21,6 +21,7 @@
 #' @param subset.percentage Logical (default: TRUE). If TRUE, show the percentages of the counts.
 #' @param subset.percentage.position A list. See `subset_percentage_position()`.
 #' @param subset.percentage.font A list. See `subset_percentage_font()`.
+#' @param subset.percentage.rounding An integer (default: 1L). How many decimal points.
 #'
 #' @returns A venn diagram which is a `ggplot` object.
 #' @export
@@ -33,7 +34,7 @@ venny <- function(
         detail = FALSE,
         ellipse.line = ellipse_line(),  # from ./params.R
         ellipse.fill = ellipse_fill(),  # from ./params.R
-        ellipse.density = 200,
+        ellipse.density = 200L,
         set.label = TRUE,
         set.label.position = set_label_position(),  # from ./params.R
         set.label.font = set_label_font(),  # from ./params.R
@@ -45,7 +46,8 @@ venny <- function(
         subset.count.font = subset_count_font(),  # from ./params.R
         subset.percentage = TRUE,
         subset.percentage.position = subset_count_position(vjust = -0.3),  # from ./params.R
-        subset.percentage.font = subset_percentage_font()  # from ./params.R
+        subset.percentage.font = subset_percentage_font(),  # from ./params.R
+        subset.percentage.rounding = 1L
 ) {
     if (is.null(data) || length(data) < 2 || length(data) > 4 || !is.list(data))
         stop("`data` should be a list with 2 to 4 vectors.")
@@ -247,7 +249,10 @@ venny <- function(
             if (is.null(xy) | any(is.na(xy)) | length(xy) != 2) next
 
             percentage <- df0[rownames(df0) == nm, ][["percentage"]]
-            percentage <- sprintf("(%.2f%%)", round(percentage, 2))
+            percentage <- round(percentage, subset.percentage.rounding)
+            perc_format <- paste0("(%.", subset.percentage.rounding, "f%%)")
+            percentage <- sprintf(perc_format, percentage)
+            # percentage <- sprintf("(%.2f%%)", round(percentage, subset.percentage.rounding))
 
             p0 <- p0 +
                 ggplot2::annotate(

@@ -9,7 +9,7 @@ venny(
   detail = FALSE,
   ellipse.line = ellipse_line(),
   ellipse.fill = ellipse_fill(),
-  ellipse.density = 200,
+  ellipse.density = 200L,
   set.label = TRUE,
   set.label.position = set_label_position(),
   set.label.font = set_label_font(),
@@ -21,7 +21,8 @@ venny(
   subset.count.font = subset_count_font(),
   subset.percentage = TRUE,
   subset.percentage.position = subset_count_position(vjust = -0.3),
-  subset.percentage.font = subset_percentage_font()
+  subset.percentage.font = subset_percentage_font(),
+  subset.percentage.rounding = 1L
 )
 }
 \arguments{
@@ -35,7 +36,7 @@ Otherwise, output only venn diagram.}
 
 \item{ellipse.fill}{A list. See \code{ellipse_fill()}.}
 
-\item{ellipse.density}{Integer (default: 200). Higher value yield smoother ellipse.}
+\item{ellipse.density}{An integer (default: 200L). Higher value yield smoother ellipse.}
 
 \item{set.label}{Logical (default: TRUE). If TRUE, show the set labels.}
 
@@ -45,7 +46,7 @@ Otherwise, output only venn diagram.}
 
 \item{subset.label}{Logical (default: TRUE). If TRUE, show the subset labels.
 If a named list is provided, then the selected subset name will be renamed.
-For example, list(AB = "new_AB") will change the original subset AB name to "new_AB".}
+For example, \code{list(AB = "new_AB")} will change the original subset AB name to "new_AB".}
 
 \item{subset.label.position}{A list. See \code{subset_label_position()}.}
 
@@ -62,6 +63,8 @@ For example, list(AB = "new_AB") will change the original subset AB name to "new
 \item{subset.percentage.position}{A list. See \code{subset_percentage_position()}.}
 
 \item{subset.percentage.font}{A list. See \code{subset_percentage_font()}.}
+
+\item{subset.percentage.rounding}{An integer (default: 1L). How many decimal points.}
 }
 \value{
 A venn diagram which is a \code{ggplot} object.

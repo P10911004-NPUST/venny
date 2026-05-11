@@ -203,6 +203,10 @@ fixed_length <- function(x, len, fill_with = NULL)
 ## Set operation
 ##<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+# These set operations on list better not implemented as S3 method,
+# because they might give unexpected output.
+# So, just keep them as internal functions.
+
 .intersect_n <- function(lst, coerce2char = TRUE)
 {
     if (is.null(lst)) return(NULL)
