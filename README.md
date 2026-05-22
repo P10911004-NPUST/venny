@@ -12,7 +12,7 @@ and other friends.
 
 <!-- badges: start -->
 
-[![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)]()
+[![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://cran.r-project.org/package=venny)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/outlying?color=brightgreen)](https://cran.r-project.org/package=venny)
 [![R-CMD-check](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT)
