@@ -2,7 +2,7 @@
 % Please edit documentation in R/polyclip.R
 \name{highlight}
 \alias{highlight}
-\title{Draw polygons}
+\title{Draw polygons to highlight subsets}
 \usage{
 highlight(
   venn,

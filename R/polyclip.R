@@ -155,41 +155,7 @@ setdiff.venny_setops <- function(x, y, ...)
 }
 
 
-#------------------------- Testing -------------------------#
-if (FALSE)
-{
-    data <- list(
-        Set_A = c(10:100, 500:600),
-        Set_B = c(5:150, 550:650),
-        Set_C = c(80:180, 580:680),
-        Set_D = c(120:220, 520:620)
-    )
-    out <- venny(data, detail = TRUE)
-    p0 <- out$venn
-    ep <- out$ellipse_path
-
-    #------------- Intersection -------------#
-    res <- intersect(ep$Set_A, ep$Set_B, ep$Set_D)
-    highlight(p0, res)
-
-    #----------------- Union ----------------#
-    res <- union(ep$Set_A, ep$Set_C, ep$Set_D)
-    highlight(p0, res)
-
-    #--------------- Difference -------------#
-    res <- setdiff(ep$Set_B, ep$Set_D, ep$Set_A, ep$Set_C)
-    highlight(p0, res)
-
-    #---------------- Combined --------------#
-    res <- union(ep$Set_A, ep$Set_B, ep$Set_C) |>
-        intersect(ep$Set_D) |>
-        setdiff(ep$Set_B)
-    highlight(p0, res)
-}
-
-
-
-#' Draw polygons
+#' Draw polygons to highlight subsets
 #'
 #' A handy wrapper for the `ggplot2::geom_polygon()` used to represent the
 #' result of set operations.

@@ -28,7 +28,8 @@
 #'
 #' @examples
 #' lst <- LGL23$DEGs
-#' venny(lst)
+#' setLabelPosition <- set_label_position(hjust = c(0.2, -0.5, 0.5, -0.2))
+#' venny(lst, set.label.position = setLabelPosition)
 venny <- function(
         data,
         detail = FALSE,
@@ -51,22 +52,22 @@ venny <- function(
 ) {
     if (is.null(data) || length(data) < 2 || length(data) > 4 || !is.list(data))
         stop("`data` should be a list with 2 to 4 vectors.")
-
+    
     n_sets <- length(data)  # should be 2-4
     n_subsets <- how_many_subsets(seq_along(data))  # should be 15
-
+    
     p0 <- ggplot2::ggplot() + ggplot2::theme_void() + ggplot2::coord_fixed()
     class(p0) <- c(class(p0), "venny")
-
+    
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Draw ellipses ====
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ellipse.line <- lapply(ellipse.line, function(`_`) fixed_length(`_`, n_sets))
     ellipse.fill <- lapply(ellipse.fill, function(`_`) fixed_length(`_`, n_sets))
     ellipse.density <- fixed_length(ellipse.density, n_sets)
-
+    
     pos <- ellipse_position()[[n_sets - 1]]
-
+    
     ellipse_path <- lapply(
         seq_along(pos),
         function(i)
@@ -81,7 +82,7 @@ venny <- function(
             )
         }
     )
-
+    
     x <- NULL  # prevent warning message: no visible binding variables x y
     y <- NULL  # prevent warning message: no visible binding variables x y
     for (i in seq_along(ellipse_path))
@@ -97,17 +98,17 @@ venny <- function(
                 linewidth = ellipse.line[["linewidth"]][[i]]
             )
     }
-
+    
     lst0 <- venn_summary(data)
     df0 <- lst0[["table"]]
-
+    
     `_set_label` <- names(data)
     if (is.null(names(data))) `_set_label` <- set_label_default(n_sets)
-
+    
     `_subset_label` <- subset_label_default(n_sets)  # from ./params.R
-
+    
     df0 <- df0[match(names(`_subset_label`), rownames(df0)), ]
-
+    
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Set label ====
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -122,22 +123,22 @@ venny <- function(
                 c(-48, 0, 0, 48)
             )
         }
-
+        
         set.label.font <- lapply(
             set.label.font,
             function(`_`) fixed_length(`_`, n_sets)
         )
-
+        
         pos <- set.label.position[[n_sets - 1]]
-
+        
         for (i in seq_along(pos))
         {
             nm <- names(pos[i])
             xy <- pos[[i]]
             if (is.null(xy) | any(is.na(xy)) | length(xy) != 2) next
-
+            
             name <- `_set_label`[i]
-
+            
             p0 <- p0 +
                 ggplot2::annotate(
                     geom = "text",
@@ -152,7 +153,7 @@ venny <- function(
                 )
         }
     }
-
+    
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Subset label ====
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -162,24 +163,24 @@ venny <- function(
             subset.label.font,
             function(`_`) fixed_length(`_`, n_subsets)
         )
-
+        
         if (is.recursive(subset.label))
         {
             subset.label <- subset.label[names(subset.label) %in% `_subset_label`]
             `_subset_label`[names(subset.label)] <- subset.label
             df0[, "subset"] <- unlist(`_subset_label`)
         }
-
+        
         pos <- subset.label.position[[n_sets - 1]]
-
+        
         for (i in seq_along(pos))
         {
             nm <- names(pos[i])
             xy <- pos[[i]]
             if (is.null(xy) | any(is.na(xy)) | length(xy) != 2) next
-
+            
             name <- df0[rownames(df0) == nm, ][["subset"]]
-
+            
             p0 <- p0 +
                 ggplot2::annotate(
                     geom = "text",
@@ -194,7 +195,7 @@ venny <- function(
                 )
         }
     }
-
+    
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Subset count ====
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -204,17 +205,17 @@ venny <- function(
             subset.count.font,
             function(`_`) fixed_length(`_`, n_subsets)
         )
-
+        
         pos <- subset.count.position[[n_sets - 1]]
-
+        
         for (i in seq_along(pos))
         {
             nm <- names(pos[i])
             xy <- pos[[i]]
             if (is.null(xy) | any(is.na(xy)) | length(xy) != 2) next
-
+            
             count <- df0[rownames(df0) == nm, ][["n_elements"]]
-
+            
             p0 <- p0 +
                 ggplot2::annotate(
                     geom = "text",
@@ -229,7 +230,7 @@ venny <- function(
                 )
         }
     }
-
+    
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ## Subset percentage ====
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -239,21 +240,21 @@ venny <- function(
             subset.percentage.font,
             function(`_`) fixed_length(`_`, n_subsets)
         )
-
+        
         pos <- subset.percentage.position[[n_sets - 1]]
-
+        
         for (i in seq_along(pos))
         {
             nm <- names(pos[i])
             xy <- pos[[i]]
             if (is.null(xy) | any(is.na(xy)) | length(xy) != 2) next
-
+            
             percentage <- df0[rownames(df0) == nm, ][["percentage"]]
             percentage <- round(percentage, subset.percentage.rounding)
             perc_format <- paste0("(%.", subset.percentage.rounding, "f%%)")
             percentage <- sprintf(perc_format, percentage)
             # percentage <- sprintf("(%.2f%%)", round(percentage, subset.percentage.rounding))
-
+            
             p0 <- p0 +
                 ggplot2::annotate(
                     geom = "text",
@@ -268,7 +269,7 @@ venny <- function(
                 )
         }
     }
-
+    
     if (isTRUE(detail))
     {
         names(ellipse_path) <- `_set_label`
@@ -280,25 +281,5 @@ venny <- function(
         return(ret)
     } else {
         return(p0)
-    }
-
-    ##<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    ## Test ====
-    ##<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    if (FALSE)
-    {
-        if (!is.null(dev.list())) dev.off()
-        rm(list = ls())
-        out <- venny(
-            data = list(
-                1:351,
-                243:1579,
-                156:711,
-                388:942
-            ),
-            subset.label = list(A = "123", ABC = "888", CD = ""),
-            subset.count.position = subset_count_position(hide = c("AB", "BC")),
-            detail = TRUE
-        )
     }
 }

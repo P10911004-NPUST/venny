@@ -134,6 +134,8 @@ how_many_subsets <- function(x, detail = FALSE)
 {
     if (length(x) < 2) stop("Require at least 2 sets.")
     
+    x <- as.character(x)
+    
     n <- 0
     comb_n <- vector("list", length(x))
     
@@ -203,6 +205,7 @@ fixed_length <- function(x, len, fill_with = NULL)
 ## Set operation
 ##<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+# This is a note for myself.
 # These set operations on list better not implemented as S3 method,
 # because they might give unexpected output.
 # So, just keep them as internal functions.

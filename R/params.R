@@ -49,6 +49,9 @@ ellipse_position <- function() {
 #'
 #' @returns A list contains "color" and "alpha" values.
 #' @export
+#' 
+#' @examples
+#' ellipse_line()
 #' @seealso [ellipse_fill()]
 ellipse_line <- function(
         linetype = "blank",
@@ -411,12 +414,13 @@ subset_count_position <- function(
             for (i in seq_along(lst))
             {
                 subset_label <- names(lst[i])
+                lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])  # fixing bug
                 if ( ! is.null(show) & ! subset_label %in% show )
                     lst[subset_label] <- list(NULL)
                 if ( ! is.null(hide) & subset_label %in% hide )
                     lst[subset_label] <- list(NULL)
-                if (is.null(show) & is.null(hide))
-                    lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])
+                # if (is.null(show) & is.null(hide))
+                #     lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])
             }
             return(lst)
         }

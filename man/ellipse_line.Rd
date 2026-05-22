@@ -34,6 +34,9 @@ A list contains "color" and "alpha" values.
 This is used to generate the ellipse line color and transparency parameters,
 for passing into the \code{venny()}s \code{ellipse.line} argument.
 }
+\examples{
+ellipse_line()
+}
 \seealso{
 \code{\link[=ellipse_fill]{ellipse_fill()}}
 }
