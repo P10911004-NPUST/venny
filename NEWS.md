@@ -1,6 +1,6 @@
 # venny 0.0.3
-* Fix the bug in `subset_count_position()`, the position adjustment doesn't work when `show` or `hide` is not `NULL`.
-* Add some examples to show in Github page.
+* bugfixed: `subset_count_position()`, the position adjustment doesn't work when `show` or `hide` is not `NULL`.
+* bugfixed: `highlight()`, can't handle non-recursive input.
 
 # venny 0.0.2
 ## Resubmission
