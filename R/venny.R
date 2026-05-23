@@ -275,8 +275,9 @@ venny <- function(
         names(ellipse_path) <- `_set_label`
         ret <- list(
             venn = p0,
+            ellipse_path = ellipse_path,
             table = df0,
-            ellipse_path = ellipse_path
+            subset_elements = lst0[["subset_elements"]]
         )
         return(ret)
     } else {
