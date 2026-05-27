@@ -19,21 +19,21 @@ test_that("venny usage example", {
     #     library(ggtext)
     #     library(clusterProfiler)
     #     library(org.At.tair.db)
-    #     
+    # 
     #     intersect <- venny::intersect
     #     setdiff <- venny::setdiff
     #     union <- venny::union
     # 
     #     ## Background information
-    #     
+    # 
     #     lst <- LGL23$DEGs
     #     subset_names <- names(subset_label_default(length(lst)))
     #     print(names(lst))
     #     print(subset_names)
     # 
-    #     
+    # 
     #     ## Loss-of-function (Set C)
-    #     
+    # 
     #     select_subsets <- c("C", "BC", "CD", "ABC", "BCD", "AC", "ABCD", "ACD")
     #     font_color <- sapply(subset_names, \(x) if (x %in% select_subsets) "black" else "white")
     # 
@@ -82,9 +82,9 @@ test_that("venny usage example", {
     #         theme(axis.title.y = element_blank())
     #     ggsave("example_01_GO.jpg", path = "./man/figures")
     # 
-    #     
+    # 
     #     ## High-dosage recovery (Subset BCD)
-    #     
+    # 
     #     select_subsets <- "BCD"
     #     font_color <- sapply(subset_names, \(x) if (x %in% select_subsets) "black" else "white")
     # 
