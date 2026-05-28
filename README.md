@@ -47,7 +47,7 @@ venny(lst)
 
 # Case study
 
-This is not a fully realistic case study—the data has been heavily modified. The primary purpose is to demonstrate how to use this package, rather than to present a rigorous academic analysis.
+This is not a fully realistic case study. The primary purpose is to demonstrate how to use this package, rather than to present a rigorous academic analysis.
 
 ## Prerequisites
 ```r

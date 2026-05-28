@@ -1,4 +1,4 @@
-## Update
+## Patch-release
 
 This is a patch release that fixes several bugs:
 

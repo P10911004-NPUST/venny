@@ -8,6 +8,8 @@ Description: Generate Venn plots, summary tables, and ellipse paths for polygon 
     Provides direct access to subsets of interest and offers flexible customization of Venn diagrams.
     Summary tables are also available when Venn diagram visualization is not suitable.
 License: MIT + file LICENSE
+URL: https://github.com/P10911004-NPUST/venny
+BugReports: https://github.com/P10911004-NPUST/venny/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
