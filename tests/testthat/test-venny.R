@@ -27,13 +27,12 @@ test_that("venny usage example", {
     #     ## Background information
     # 
     #     lst <- LGL23$DEGs
-    #     subset_names <- names(subset_label_default(length(lst)))
     #     print(names(lst))
-    #     print(subset_names)
     # 
     # 
     #     ## Loss-of-function (Set C)
     # 
+    #     subset_names <- names(subset_label_default(length(lst)))
     #     select_subsets <- c("C", "BC", "CD", "ABC", "BCD", "AC", "ABCD", "ACD")
     #     font_color <- sapply(subset_names, \(x) if (x %in% select_subsets) "black" else "white")
     # 

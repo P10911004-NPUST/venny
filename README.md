@@ -13,7 +13,7 @@ and other friends.
 <!-- badges: start -->
 
 [![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://cran.r-project.org/package=venny)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/outlying?color=brightgreen)](https://cran.r-project.org/package=venny)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/venny?color=brightgreen)](https://cran.r-project.org/package=venny)
 [![R-CMD-check](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/venny)](https://cranlogs.r-pkg.org/badges/venny)
@@ -87,9 +87,7 @@ The `LGL23` object is an RNA-seq dataset stored as a list containing the followi
 
 ```r
 lst <- LGL23$DEGs
-subset_names <- names(subset_label_default(length(lst)))
 print(names(lst))
-print(subset_names)
 ```
 
 ## Loss-of-function (Set C)
@@ -97,6 +95,7 @@ print(subset_names)
 To investigate the function of the target gene, we compared gene expression profiles between the WT and KO plants under untreated conditions. Differentially expressed genes (DEGs) identified from this comparison may provide insights into the biological roles and regulatory functions of the target gene.
 
 ```r
+subset_names <- names(subset_label_default(length(lst)))
 select_subsets <- c("C", "BC", "CD", "ABC", "BCD", "AC", "ABCD", "ACD")
 font_color <- sapply(subset_names, \(x) if (x %in% select_subsets) "black" else "white")
 
@@ -201,4 +200,4 @@ GO@result |>
 ![example02](./man/figures/example_02_GO.jpg "venny's basic usage example")
 
 <br>
-<hr><h2 style="text-align: center">The End</h2><hr>
+<h2 style="text-align: center">The End !!!</h2>
