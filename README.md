@@ -1,4 +1,13 @@
-# **R package &mdash; venny**
+# **venny**
+
+<!-- badges: start -->
+[![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://cran.r-project.org/package=venny)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/venny?color=brightgreen)](https://cran.r-project.org/package=venny)
+[![R-CMD-check](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/venny)](https://cranlogs.r-pkg.org/badges/venny)
+[![Downloads](https://cranlogs.r-pkg.org/badges/venny?color=blue)](https://cranlogs.r-pkg.org/badges/venny)
+<!-- badges: end -->
 
 `venny` is an R package for generating Venn diagram, summary tables, and ellipse paths for polygon clipping. 
 It provides direct access to subsets of interest and offers flexible customization of Venn diagrams. 
@@ -9,17 +18,6 @@ There are also other nice alternatives such as
 [`ggVennDiagram`](https://cran.r-project.org/package=ggVennDiagram), 
 [`UpSetR`](https://cran.r-project.org/package=UpSetR), 
 and other friends.
-
-<!-- badges: start -->
-
-[![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://cran.r-project.org/package=venny)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/venny?color=brightgreen)](https://cran.r-project.org/package=venny)
-[![R-CMD-check](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/venny)](https://cranlogs.r-pkg.org/badges/venny)
-[![Downloads](https://cranlogs.r-pkg.org/badges/venny?color=blue)](https://cranlogs.r-pkg.org/badges/venny)
-
-<!-- badges: end -->
 
 # Installation
 
@@ -35,7 +33,6 @@ or the developmental version from [GitHub](https://github.com/P10911004-NPUST/ve
 if (!require("devtools")) install.packages("devtools")
 devtools::install_github("P10911004-NPUST/venny")
 ```
-
 
 # Quick start
 ```r
@@ -70,6 +67,11 @@ union <- venny::union
 
 ## Background information
 
+```r
+lst <- LGL23$DEGs
+print(names(lst))
+```
+
 The `LGL23` object is an RNA-seq dataset stored as a list containing the following components:
 
 - sample_info: A data frame containing the genotype and treatment information for each sample ID.
@@ -85,10 +87,6 @@ The `LGL23` object is an RNA-seq dataset stored as a list containing the followi
   - OE_mock vs KO_mock: 
     Genes that are differentially expressed between the overexpression (OE) plant and the untreated KO plant under mock-treatment conditions. The OE plant is a genetically modified line in which gene_X is highly expressed or constitutively activated. Ideally, the transcriptional profile of OE_mock should resemble that of KO_high.
 
-```r
-lst <- LGL23$DEGs
-print(names(lst))
-```
 
 ## Loss-of-function (Set C)
 
@@ -149,6 +147,7 @@ GO@result |>
 ```
 ![example02](./man/figures/example_01_GO.jpg "venny's basic usage example")
 
+
 ## High-dosage recovery (Subset BCD)
 
 We compared transcriptomic responses induced by high-dose exogenous chemical treatment in the knockout line (KO_high), endogenous overexpression of the target gene in the OE line (OE_mock), and the wild-type control (WT_mock), each relative to the untreated knockout condition (KO_mock). This integrative comparison was used to evaluate whether the exogenous chemical can phenocopy endogenous activation of the pathway and whether its transcriptional effects converge toward a wild-type-like state.
@@ -201,3 +200,8 @@ GO@result |>
 
 <br>
 <h2 style="text-align: center">The End !!!</h2>
+
+<br>
+
+# TODO
+- [] Implement upset plot (depend on ggplot2 only)
