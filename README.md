@@ -4,9 +4,9 @@
 [![Repo_Status_Badge](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://cran.r-project.org/package=venny)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/venny?color=brightgreen)](https://cran.r-project.org/package=venny)
 [![R-CMD-check](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/P10911004-NPUST/venny/actions/workflows/R-CMD-check.yaml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/venny)](https://cranlogs.r-pkg.org/badges/venny)
 [![Downloads](https://cranlogs.r-pkg.org/badges/venny?color=blue)](https://cranlogs.r-pkg.org/badges/venny)
+<!-- [![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT) -->
 <!-- badges: end -->
 
 `venny` is an R package for generating Venn diagram, summary tables, and ellipse paths for polygon clipping. 
@@ -204,4 +204,4 @@ GO@result |>
 <br>
 
 # TODO
-- [] Implement upset plot (depend on ggplot2 only)
+- [ ] Implement upset plot (depend on ggplot2 only)
