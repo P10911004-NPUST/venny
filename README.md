@@ -27,11 +27,11 @@ You can install the package from [CRAN](https://cran.r-project.org/package=venny
 install.packages("venny")
 ```
 
-or the developmental version from [GitHub](https://github.com/P10911004-NPUST/venny) with:
+or the development version from [GitHub](https://github.com/P10911004-NPUST/venny) with:
 
 ``` r
-if (!require("devtools")) install.packages("devtools")
-devtools::install_github("P10911004-NPUST/venny")
+if (!require("pak")) install.packages("pak")
+pak::pak("P10911004-NPUST/venny")
 ```
 
 # Quick start
