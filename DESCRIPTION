@@ -1,6 +1,6 @@
 Package: venny
 Title: Venn Diagram
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: 
     person("Joon-Keat", "Lai", , "p10911004@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-9840-5836"))
@@ -12,7 +12,6 @@ URL: https://github.com/P10911004-NPUST/venny
 BugReports: https://github.com/P10911004-NPUST/venny/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Imports: 
     ggplot2,
     polyclip
@@ -29,3 +28,4 @@ Suggests:
     clusterProfiler,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0
