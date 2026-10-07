@@ -20,7 +20,7 @@ venny(
   subset.count.position = subset_count_position(),
   subset.count.font = subset_count_font(),
   subset.percentage = TRUE,
-  subset.percentage.position = subset_count_position(vjust = -0.3),
+  subset.percentage.position = subset_percentage_position(),
   subset.percentage.font = subset_percentage_font(),
   subset.percentage.rounding = 1L
 )

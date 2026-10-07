@@ -4,7 +4,7 @@
 \alias{venn_summary}
 \title{Create a \code{venny} summary data.frame}
 \usage{
-venn_summary(data = list(), show_elements = TRUE)
+venn_summary(data = list(), show_elements = FALSE)
 }
 \arguments{
 \item{data}{A named list contains 2 ~ 26 sets of elements.

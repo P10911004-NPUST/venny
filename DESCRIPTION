@@ -26,6 +26,9 @@ Suggests:
     org.At.tair.db,
     DESeq2,
     clusterProfiler,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.0
+VignetteBuilder: knitr

@@ -174,13 +174,14 @@ set_label_position <- function(
 
             for (i in seq_along(lst))
             {
+                lst[[i]] <- lst[[i]] + c(hjust[i], vjust[i])
                 set_label <- names(lst[i])
                 if ( ! is.null(show) & ! set_label %in% show )
                     lst[set_label] <- list(NULL)
                 if ( ! is.null(hide) & set_label %in% hide )
                     lst[set_label] <- list(NULL)
-                if (is.null(show) & is.null(hide))
-                    lst[[set_label]] <- lst[[i]] + c(hjust[i], vjust[i])
+                # if (is.null(show) & is.null(hide))
+                #     lst[[set_label]] <- lst[[i]] + c(hjust[i], vjust[i])
             }
             return(lst)
         }
@@ -316,13 +317,14 @@ subset_label_position <- function(
 
             for (i in seq_along(lst))
             {
+                lst[[i]] <- lst[[i]] + c(hjust[i], vjust[i])
                 subset_label <- names(lst[i])
                 if ( ! is.null(show) & ! subset_label %in% show )
                     lst[subset_label] <- list(NULL)
                 if ( ! is.null(hide) & subset_label %in% hide )
                     lst[subset_label] <- list(NULL)
-                if (is.null(show) & is.null(hide))
-                    lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])
+                # if (is.null(show) & is.null(hide))
+                #     lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])
             }
             return(lst)
         }
@@ -417,8 +419,8 @@ subset_count_position <- function(
 
             for (i in seq_along(lst))
             {
+                lst[[i]] <- lst[[i]] + c(hjust[i], vjust[i])  # fixing bug
                 subset_label <- names(lst[i])
-                lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])  # fixing bug
                 if ( ! is.null(show) & ! subset_label %in% show )
                     lst[subset_label] <- list(NULL)
                 if ( ! is.null(hide) & subset_label %in% hide )
@@ -519,8 +521,8 @@ subset_percentage_position <- function(
             
             for (i in seq_along(lst))
             {
+                lst[[i]] <- lst[[i]] + c(hjust[i], vjust[i])  # fixing bug
                 subset_label <- names(lst[i])
-                lst[[subset_label]] <- lst[[i]] + c(hjust[i], vjust[i])  # fixing bug
                 if ( ! is.null(show) & ! subset_label %in% show )
                     lst[subset_label] <- list(NULL)
                 if ( ! is.null(hide) & subset_label %in% hide )

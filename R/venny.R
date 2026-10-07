@@ -46,7 +46,8 @@ venny <- function(
         subset.count.position = subset_count_position(),  # from ./params.R
         subset.count.font = subset_count_font(),  # from ./params.R
         subset.percentage = TRUE,
-        subset.percentage.position = subset_count_position(vjust = -0.3),  # from ./params.R
+        # subset.percentage.position = subset_count_position(vjust = -0.3),  # from ./params.R
+        subset.percentage.position = subset_percentage_position(),  # from ./params.R
         subset.percentage.font = subset_percentage_font(),  # from ./params.R
         subset.percentage.rounding = 1L
 ) {

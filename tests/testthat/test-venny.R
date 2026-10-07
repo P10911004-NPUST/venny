@@ -3,7 +3,7 @@ test_that("venny usage example", {
     #     # Quick start
     #     lst <- LGL23$DEGs
     #     venny(lst)
-    #     ggsave("example_00_venn.jpg", path = "./man/figures")
+    #     # ggsave("example_00_venn.jpg", path = "./man/figures")
     # 
     #     # Usage example
     #     ## Prerequisites
@@ -64,7 +64,7 @@ test_that("venny usage example", {
     #                 sep = "<br>"
     #             ),
     #         )
-    #     ggsave("example_01_venn.jpg", path = "./man/figures")
+    #     # ggsave("example_01_venn.jpg", path = "./man/figures")
     # 
     #     GO <- clusterProfiler::enrichGO(
     #         gene = LGL23$DEGs$`WT_mock vs KO_mock`,
@@ -79,7 +79,7 @@ test_that("venny usage example", {
     #         theme_bw() +
     #         geom_point(aes(size = Count, color = FoldEnrichment)) +
     #         theme(axis.title.y = element_blank())
-    #     ggsave("example_01_GO.jpg", path = "./man/figures")
+    #     # ggsave("example_01_GO.jpg", path = "./man/figures")
     # 
     # 
     #     ## High-dosage recovery (Subset BCD)
@@ -106,7 +106,7 @@ test_that("venny usage example", {
     #         setdiff(ep$`KO_low vs KO_mock`)
     # 
     #     highlight(venn, setops, linetype = "solid", color = "black")
-    #     ggsave("example_02_venn.jpg", path = "./man/figures")
+    #     # ggsave("example_02_venn.jpg", path = "./man/figures")
     # 
     #     GO <- clusterProfiler::enrichGO(
     #         gene = BCD$subset_elements$BCD,
@@ -121,7 +121,7 @@ test_that("venny usage example", {
     #         theme_bw() +
     #         geom_point(aes(size = Count, color = FoldEnrichment)) +
     #         theme(axis.title.y = element_blank())
-    #     ggsave("example_02_GO.jpg", path = "./man/figures")
+    #     # ggsave("example_02_GO.jpg", path = "./man/figures")
     # 
     # }
     expect_equal(TRUE, TRUE)
