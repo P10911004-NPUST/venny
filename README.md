@@ -9,9 +9,11 @@
 <!-- [![License: MIT](https://img.shields.io/badge/License-MIT-maroon.svg)](https://opensource.org/licenses/MIT) -->
 <!-- badges: end -->
 
-`venny` is an R package for generating Venn diagram, summary tables, and ellipse paths for polygon clipping. 
+An R package for generating Venn diagram, summary tables, and ellipse paths for polygon clipping. 
 It provides direct access to subsets of interest and offers flexible customization of Venn diagrams. 
 Summary tables are also available when Venn diagram visualization is not suitable.
+
+[Get started](https://p10911004-npust.github.io/venny/articles/venny.html)
 
 There are also other nice alternatives such as 
 [`ggvenn`](https://cran.r-project.org/package=ggvenn), 

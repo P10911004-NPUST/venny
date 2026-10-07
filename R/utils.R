@@ -61,17 +61,24 @@ venn_summary <- function(
         elements <- lapply(lst0, function(`_`) paste(`_`, collapse = ","))
         elements <- do.call(rbind.data.frame, elements)[[1]]
         df0["elements"] <- elements
-        ret <- list(
-            table = df0,
-            set_names_ref = set_names_ref,
-            subset_elements = lst0
-        )
+        # ret <- list(
+        #     table = df0,
+        #     set_names_ref = set_names_ref,
+        #     subset_elements = lst0
+        # )
     } else {
-        ret <- list(
-            table = df0,
-            set_names_ref = set_names_ref
-        )
+        please_ignore <- 1234
+        # ret <- list(
+        #     table = df0,
+        #     set_names_ref = set_names_ref
+        # )
     }
+    
+    ret <- list(
+        table = df0,
+        set_names_ref = set_names_ref,
+        subset_elements = lst0
+    )
     
     return(ret)
 }

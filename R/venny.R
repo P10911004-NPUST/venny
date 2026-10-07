@@ -57,7 +57,7 @@ venny <- function(
     n_sets <- length(data)  # should be 2-4
     n_subsets <- how_many_subsets(seq_along(data))  # should be 15
     
-    p0 <- ggplot2::ggplot() + ggplot2::theme_void() + ggplot2::coord_fixed()
+    p0 <- ggplot2::ggplot() + ggplot2::theme_void() + ggplot2::coord_fixed(ratio = 0.9)
     class(p0) <- c(class(p0), "venny")
     
     ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
