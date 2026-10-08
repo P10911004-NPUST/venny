@@ -120,12 +120,7 @@ set-based analysis.</p>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"P10911004-NPUST/venny"</span><span class="op">)</span></span></code></pre></div>
 <p>Then load the package:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/P10911004-NPUST/venny" class="external-link">venny</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'venny'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, union</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/P10911004-NPUST/venny" class="external-link">venny</a></span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -136,14 +131,12 @@ vectors.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/quick-start-1.png" class="r-plt" alt="" width="672"></p>
-<p>A practical usage scenario:</p>
 <p>The names of the list are used as the set labels. If the input list
 is unnamed, <code>venny</code> automatically uses labels such as
 <code>Set_A</code>, <code>Set_B</code>, and <code>Set_C</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="fl">51</span><span class="op">:</span><span class="fl">150</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-input-1.png" class="r-plt" alt="" width="672"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="venny_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="672"></p>
 <p>The basic plot is a <code>ggplot</code> object, so ordinary
 <code>ggplot2</code> layers can be added to it.</p>
 <p><br></p>
@@ -155,7 +148,7 @@ is unnamed, <code>venny</code> automatically uses labels such as
 as <code>A</code>, <code>AB</code>, <code>ABC</code>, and so on.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">[</span><span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="venny_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="672"></p>
 <p>For example:</p>
 <ul>
 <li>
@@ -317,30 +310,30 @@ labels of <code>LGL23$DEGs</code> are:</p>
 <code><a href="../reference/set_label_default.html">set_label_default()</a></code>. The positioning are:</p>
 <table class="table">
 <colgroup>
-<col width="18%">
-<col width="37%">
-<col width="44%">
+<col width="28%">
+<col width="32%">
+<col width="39%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">Number of sets</th>
-<th align="center">Internal set labels</th>
-<th align="center">Positioning</th>
+<th align="left">Internal set labels</th>
+<th align="left">Positioning</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="center">2</td>
-<td align="center">A, B</td>
-<td align="center">left -&gt; right</td>
+<td align="left">A, B</td>
+<td align="left">left -&gt; right</td>
 </tr>
 <tr class="even">
 <td align="center">3</td>
-<td align="center">A, B, C</td>
-<td align="center">upper -&gt; lower left -&gt; lower right</td>
+<td align="left">A, B, C</td>
+<td align="left">upper -&gt; lower left -&gt; lower right</td>
 </tr>
 <tr class="odd">
 <td align="center">4</td>
-<td align="center">A, B, C, D</td>
-<td align="center">start from lower left, clockwise</td>
+<td align="left">A, B, C, D</td>
+<td align="left">start from lower left, clockwise</td>
 </tr>
 </tbody>
 </table>
@@ -352,10 +345,8 @@ example, if you want to hide the set labels of “KO_low vs KO_mock”
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span></span>
 <span>    <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span>,</span>
-<span>    set.label.position <span class="op">=</span> <span class="fu"><a href="../reference/set_label_position.html">set_label_position</a></span><span class="op">(</span></span>
-<span>        hjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0</span><span class="op">)</span>,</span>
-<span>        hide <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
+<span>    set.label.position <span class="op">=</span> <span class="fu"><a href="../reference/set_label_position.html">set_label_position</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0</span><span class="op">)</span>,</span>
+<span>                                            hide <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/set-label-hide-1.png" class="r-plt" alt="" width="672"></p>
 <p>The appearance of set labels is controlled with
@@ -363,10 +354,8 @@ example, if you want to hide the set labels of “KO_low vs KO_mock”
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span></span>
 <span>    <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span>,</span>
-<span>    set.label.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">set_label_font</a></span><span class="op">(</span></span>
-<span>        face <span class="op">=</span> <span class="st">"italic"</span>,</span>
-<span>        size <span class="op">=</span> <span class="fl">7</span></span>
-<span>    <span class="op">)</span></span>
+<span>    set.label.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">set_label_font</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"italic"</span>,</span>
+<span>                                    size <span class="op">=</span> <span class="fl">7</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/set-label-font-1.png" class="r-plt" alt="" width="672"></p>
 </div>
@@ -378,23 +367,18 @@ functions independently of set labels. The subset labels can be renamed
 by assigning a list of (old_name = new_name) to the
 <code>subset.label</code> argument.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">subset_font_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="../reference/set_label_default.html">subset_label_default</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>, </span>
-<span>    <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span><span class="op">)</span> <span class="st">"maroon"</span> <span class="kw">else</span> <span class="st">"blue"</span>,</span>
-<span>    FUN.VALUE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">subset_font_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="fu"><a href="../reference/set_label_default.html">subset_label_default</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>                            <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span>
+<span>                                <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span><span class="op">)</span><span class="op">)</span> <span class="st">"maroon"</span> <span class="kw">else</span> <span class="st">"blue"</span>,</span>
+<span>                            FUN.VALUE <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span></span>
 <span>    <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span>,</span>
-<span>    subset.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>        A <span class="op">=</span> <span class="st">"Apple"</span>,</span>
-<span>        B <span class="op">=</span> <span class="st">"Banana"</span>,</span>
-<span>        C <span class="op">=</span> <span class="st">"Coconut"</span>,</span>
-<span>        D <span class="op">=</span> <span class="st">"Durian"</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    subset.label.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_label_font</a></span><span class="op">(</span></span>
-<span>        color <span class="op">=</span> <span class="va">subset_font_color</span></span>
-<span>    <span class="op">)</span></span>
+<span>    subset.label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>A <span class="op">=</span> <span class="st">"Apple"</span>,</span>
+<span>                        B <span class="op">=</span> <span class="st">"Banana"</span>,</span>
+<span>                        C <span class="op">=</span> <span class="st">"Coconut"</span>,</span>
+<span>                        D <span class="op">=</span> <span class="st">"Durian"</span><span class="op">)</span>,</span>
+<span>    subset.label.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_label_font</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">subset_font_color</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/subset-label-rename-1.png" class="r-plt" alt="" width="672"></p>
 </div>
@@ -403,10 +387,10 @@ by assigning a list of (old_name = new_name) to the
 </h3>
 <p>Counts and percentages are independent layers.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">nm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_label_default.html">subset_label_default</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">nm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/set_label_default.html">subset_label_default</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">font_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fixed_length.html">fixed_length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"maroon"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">nm</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">font_angle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fixed_length.html">fixed_length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">60</span>, <span class="fl">90</span>, <span class="fl">180</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">nm</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">show_subset_perc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"AB"</span>, <span class="st">"ACD"</span>, <span class="st">"BC"</span>, <span class="st">"CD"</span>, <span class="st">"ABCD"</span><span class="op">)</span></span>
+<span><span class="va">show_perc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>, <span class="st">"AB"</span>, <span class="st">"ACD"</span>, <span class="st">"BC"</span>, <span class="st">"CD"</span>, <span class="st">"ABCD"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span></span>
 <span>    <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span>,</span>
@@ -415,21 +399,17 @@ by assigning a list of (old_name = new_name) to the
 <span>                                          color <span class="op">=</span> <span class="va">font_color</span>,</span>
 <span>                                          angle <span class="op">=</span> <span class="va">font_angle</span><span class="op">)</span>,</span>
 <span>    subset.percentage <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>    subset.percentage.rounding <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    subset.percentage.position <span class="op">=</span> <span class="fu"><a href="../reference/set_label_position.html">subset_percentage_position</a></span><span class="op">(</span>show <span class="op">=</span> <span class="va">show_subset_perc</span><span class="op">)</span>,</span>
+<span>    subset.percentage.rounding <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>    subset.percentage.position <span class="op">=</span> <span class="fu"><a href="../reference/set_label_position.html">subset_percentage_position</a></span><span class="op">(</span>show <span class="op">=</span> <span class="va">show_perc</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/count-percentage-1.png" class="r-plt" alt="" width="672"></p>
 <p>For example:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span></span>
 <span>    <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span>,</span>
-<span>    subset.count.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_count_font</a></span><span class="op">(</span></span>
-<span>        face <span class="op">=</span> <span class="st">"bold"</span>,</span>
-<span>        size <span class="op">=</span> <span class="fl">4</span></span>
-<span>    <span class="op">)</span>,</span>
-<span>    subset.percentage.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_percentage_font</a></span><span class="op">(</span></span>
-<span>        size <span class="op">=</span> <span class="fl">3.5</span></span>
-<span>    <span class="op">)</span></span>
+<span>    subset.count.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_count_font</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span>,</span>
+<span>                                          size <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span>
+<span>    subset.percentage.font <span class="op">=</span> <span class="fu"><a href="../reference/set_label_font.html">subset_percentage_font</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/count-font-1.png" class="r-plt" alt="" width="672"></p>
 <p><br></p>
@@ -461,32 +441,23 @@ one ellipse directly:</p>
 <p>The lower-level <code><a href="../reference/generate_ellipse_path.html">generate_ellipse_path()</a></code> function can
 also be used independently.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">circle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_ellipse_path.html">generate_ellipse_path</a></span><span class="op">(</span></span>
-<span>    x0 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>    y0 <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>    a <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>    b <span class="op">=</span> <span class="fl">1</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">circle</span><span class="op">)</span></span>
-<span><span class="co">#&gt;              x          y</span></span>
-<span><span class="co">#&gt; [1,] 1.0000000 0.00000000</span></span>
-<span><span class="co">#&gt; [2,] 0.9995016 0.03156855</span></span>
-<span><span class="co">#&gt; [3,] 0.9980069 0.06310563</span></span>
-<span><span class="co">#&gt; [4,] 0.9955173 0.09457981</span></span>
-<span><span class="co">#&gt; [5,] 0.9920354 0.12595971</span></span>
-<span><span class="co">#&gt; [6,] 0.9875646 0.15721404</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">e1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/generate_ellipse_path.html">generate_ellipse_path</a></span><span class="op">(</span>x0 <span class="op">=</span> <span class="fl">0</span>, y0 <span class="op">=</span> <span class="fl">0</span>, a <span class="op">=</span> <span class="fl">2</span>, b <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">45</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">e1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             x        y</span></span>
+<span><span class="co">#&gt; [1,] 1.414214 1.414214</span></span>
+<span><span class="co">#&gt; [2,] 1.391186 1.435831</span></span>
+<span><span class="co">#&gt; [3,] 1.366772 1.456017</span></span>
+<span><span class="co">#&gt; [4,] 1.340996 1.474752</span></span>
+<span><span class="co">#&gt; [5,] 1.313883 1.492017</span></span>
+<span><span class="co">#&gt; [6,] 1.285460 1.507794</span></span></code></pre></div>
 <p>Because the result is a data frame of <code>(x, y)</code>
 coordinates, it can be plotted with <code>ggplot2</code>:</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
-<span>    <span class="va">circle</span>,</span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
+<code class="sourceCode R"><span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">e1</span>, <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">geom_polygon</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/generate-ellipse-plot-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="venny_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="35%"></p>
 <p><br></p>
 </div>
 <div class="section level2">
@@ -505,6 +476,19 @@ by the sets;</li>
 <code><a href="../reference/setops.html">setdiff()</a></code>: {A} − {B} − … – subtraction from the
 previous sets.</li>
 </ul>
+<p><b>Note: To prevent function masking from other packages, explicitly
+namespace set operations using <code>venny::</code> or reassign them
+locally:</b></p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Option A: Explicit namespacing</span></span>
+<span><span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">intersect</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">union</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">setdiff</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Option B: Local reassignment</span></span>
+<span><span class="va">intersect</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="va"><a href="../reference/setops.html">intersect</a></span></span>
+<span><span class="va">union</span>     <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="va"><a href="../reference/setops.html">union</a></span></span>
+<span><span class="va">setdiff</span>   <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="va"><a href="../reference/setops.html">setdiff</a></span></span></code></pre></div>
 <p>These operations can subsequently be displayed with
 <code><a href="../reference/highlight.html">highlight()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html" class="external-link">ggplot2::geom_polygon</a></code>. The
 <code><a href="../reference/highlight.html">highlight()</a></code> is a convenient wrapper around
@@ -513,7 +497,7 @@ polygon operation.</p>
 <div class="section level3">
 <h3 id="intersection">9.1 Intersection<a class="anchor" aria-label="anchor" href="#intersection"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/venny.html">venny</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unname.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">)</span>, detail <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">ep</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">$</span><span class="va">ellipse_path</span></span>
 <span><span class="va">setops</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_A</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_B</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_D</span><span class="op">)</span></span>
@@ -522,27 +506,15 @@ polygon operation.</p>
 <p>This highlights the region shared by A, B, and D. Because
 <code><a href="../reference/highlight.html">highlight()</a></code> returns a <code>ggplot</code> object,
 additional layers can be added. For example</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span></span>
-<span>    <span class="va">out</span><span class="op">$</span><span class="va">venn</span>,</span>
-<span>    <span class="va">setops</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>    fill <span class="op">=</span> <span class="st">"red"</span>,</span>
-<span>    alpha <span class="op">=</span> <span class="fl">0.25</span></span>
-<span><span class="op">)</span> <span class="op">+</span></span>
-<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span></span>
-<span>        <span class="st">"text"</span>,</span>
-<span>        x <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>        y <span class="op">=</span> <span class="fl">2.5</span>,</span>
-<span>        label <span class="op">=</span> <span class="st">"A ∩ B ∩ D"</span>,</span>
-<span>        fontface <span class="op">=</span> <span class="st">"bold"</span></span>
-<span>    <span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">venn</span>, <span class="va">setops</span>, color <span class="op">=</span> <span class="st">"red"</span>, fill <span class="op">=</span> <span class="st">"red"</span>, alpha <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="fl">0</span>, y <span class="op">=</span> <span class="fl">2.5</span>, label <span class="op">=</span> <span class="st">"A ∩ B ∩ D"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/highlight-annotation-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 <div class="section level3">
 <h3 id="union">9.2 Union<a class="anchor" aria-label="anchor" href="#union"></a>
 </h3>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">setops</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">union</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_A</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_C</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_D</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">venn</span>, <span class="va">setops</span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/polygon-union-1.png" class="r-plt" alt="" width="672"></p>
@@ -550,7 +522,7 @@ additional layers can be added. For example</p>
 <div class="section level3">
 <h3 id="set-difference">9.3 Set difference<a class="anchor" aria-label="anchor" href="#set-difference"></a>
 </h3>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">setops</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_B</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_D</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">venn</span>, <span class="va">setops</span><span class="op">)</span></span></code></pre></div>
 <p><img src="venny_files/figure-html/polygon-difference-1.png" class="r-plt" alt="" width="672"></p>
@@ -559,7 +531,7 @@ additional layers can be added. For example</p>
 <h3 id="chaining-operations">9.4 Chaining operations<a class="anchor" aria-label="anchor" href="#chaining-operations"></a>
 </h3>
 <p>Set operations can be chained to describe more complex regions.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">setops</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">union</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_A</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_B</span>, <span class="va">ep</span><span class="op">$</span><span class="va">Set_C</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">intersect</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_D</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">venny</span><span class="fu">::</span><span class="fu"><a href="../reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">Set_B</span><span class="op">)</span></span>
@@ -571,15 +543,15 @@ described simply by selecting a single named Venn subset.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="rna-seq-example">10. RNA-seq example<a class="anchor" aria-label="anchor" href="#rna-seq-example"></a>
+<h2 id="case-study-rna-seq-analysis">10. Case study: RNA-seq analysis<a class="anchor" aria-label="anchor" href="#case-study-rna-seq-analysis"></a>
 </h2>
 <p>This is not a fully realistic case study. The purpose is to
 demonstrate how to use this package, rather than to present a rigorous
 academic analysis.</p>
 <div class="section level3">
-<h3 id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
+<h3 id="prerequisites">10.1 Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a>
 </h3>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/P10911004-NPUST/venny" class="external-link">venny</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"venny"</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://forcats.tidyverse.org/" class="external-link">forcats</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"forcats"</span><span class="op">)</span></span>
@@ -601,9 +573,9 @@ academic analysis.</p>
 <span><span class="va">union</span> <span class="op">&lt;-</span> <span class="fu">venny</span><span class="fu">::</span><span class="va"><a href="../reference/setops.html">union</a></span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="background-information">Background information<a class="anchor" aria-label="anchor" href="#background-information"></a>
+<h3 id="background-information">10.2 Background information<a class="anchor" aria-label="anchor" href="#background-information"></a>
 </h3>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lst</span> <span class="op">&lt;-</span> <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "KO_low vs KO_mock"  "KO_high vs KO_mock" "WT_mock vs KO_mock"</span></span>
@@ -640,14 +612,14 @@ KO_high.</li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="loss-of-function-set-c">Loss-of-function (Set C)<a class="anchor" aria-label="anchor" href="#loss-of-function-set-c"></a>
+<h3 id="loss-of-function-set-c">10.3 Loss-of-function (Set C)<a class="anchor" aria-label="anchor" href="#loss-of-function-set-c"></a>
 </h3>
 <p>To investigate the function of the target gene, we compared gene
 expression profiles between the WT and KO plants under untreated
 conditions. Differentially expressed genes (DEGs) identified from this
 comparison may provide insights into the biological roles and regulatory
 functions of the target gene.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">subset_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="../reference/set_label_default.html">subset_label_default</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">lst</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">select_subsets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C"</span>, <span class="st">"BC"</span>, <span class="st">"CD"</span>, <span class="st">"ABC"</span>, <span class="st">"BCD"</span>, <span class="st">"AC"</span>, <span class="st">"ABCD"</span>, <span class="st">"ACD"</span><span class="op">)</span></span>
 <span><span class="va">font_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">subset_names</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">select_subsets</span><span class="op">)</span> <span class="st">"red"</span> <span class="kw">else</span> <span class="st">"navy"</span><span class="op">)</span></span>
@@ -667,22 +639,23 @@ functions of the target gene.</p>
 <span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span><span class="va">venn</span>, <span class="va">setops</span>, linetype <span class="op">=</span> <span class="st">"solid"</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">coord_cartesian</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html" class="external-link">annotate</a></span><span class="op">(</span><span class="st">"richtext"</span>,</span>
-<span>        x <span class="op">=</span> <span class="fl">3.2</span>, y <span class="op">=</span> <span class="op">-</span><span class="fl">1.6</span>,</span>
-<span>        hjust <span class="op">=</span> <span class="fl">0</span>,</span>
-<span>        size <span class="op">=</span> <span class="fl">5</span>,</span>
-<span>        label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
-<span>            <span class="st">"&lt;b&gt;KO:&lt;/b&gt; Knock-out"</span>,</span>
-<span>            <span class="st">"&lt;b&gt;WT:&lt;/b&gt; Wild-type"</span>,</span>
-<span>            <span class="st">"&lt;b&gt;OE:&lt;/b&gt; Overexpression"</span>,</span>
-<span>            <span class="st">"&lt;b&gt;mock:&lt;/b&gt; 0 nM treatment"</span>,</span>
-<span>            <span class="st">"&lt;b&gt;low:&lt;/b&gt; 1 nM treatment"</span>,</span>
-<span>            <span class="st">"&lt;b&gt;high:&lt;/b&gt; 5 nM treatment"</span>,</span>
-<span>            sep <span class="op">=</span> <span class="st">"&lt;br&gt;"</span></span>
-<span>        <span class="op">)</span>,</span>
-<span>    <span class="op">)</span></span>
+<span>             x <span class="op">=</span> <span class="fl">3.2</span>, </span>
+<span>             y <span class="op">=</span> <span class="op">-</span><span class="fl">1.9</span>,</span>
+<span>             hjust <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>             size <span class="op">=</span> <span class="fl">4</span>,</span>
+<span>             label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
+<span>                 <span class="st">"&lt;b&gt;KO:&lt;/b&gt; Knock-out"</span>,</span>
+<span>                 <span class="st">"&lt;b&gt;WT:&lt;/b&gt; Wild-type"</span>,</span>
+<span>                 <span class="st">"&lt;b&gt;OE:&lt;/b&gt; Overexpression"</span>,</span>
+<span>                 <span class="st">"&lt;b&gt;mock:&lt;/b&gt; 0 nM treatment"</span>,</span>
+<span>                 <span class="st">"&lt;b&gt;low:&lt;/b&gt; 1 nM treatment"</span>,</span>
+<span>                 <span class="st">"&lt;b&gt;high:&lt;/b&gt; 5 nM treatment"</span>,</span>
+<span>                 sep <span class="op">=</span> <span class="st">"&lt;br&gt;"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Awesome title"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span>, face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Coordinate system already present.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Adding new coordinate system, which will replace the existing one.</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="768"></p>
+<p><img src="venny_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="672"></p>
 <p>Target genes can be extracted from the DEGs and further analyzed
 using Gene Ontology (GO) analysis. The results suggest that the gene is
 involved in regulating nitrogen metabolism. Consistent with the finding,
@@ -690,27 +663,26 @@ we observed clear phenotypic differences between WT and KO plants under
 nitrogen-deficient conditions. Additionally, responses under sulfate
 starvation and drought recovery reveal potential new functional roles of
 the gene, providing directions for future investigation.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GO</span> <span class="op">&lt;-</span> <span class="fu">clusterProfiler</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichGO.html" class="external-link">enrichGO</a></span><span class="op">(</span></span>
 <span>    gene <span class="op">=</span> <span class="va">LGL23</span><span class="op">$</span><span class="va">DEGs</span><span class="op">$</span><span class="va">`WT_mock vs KO_mock`</span>,</span>
 <span>    OrgDb <span class="op">=</span> <span class="va">org.At.tair.db</span>,</span>
 <span>    keyType <span class="op">=</span> <span class="st">"TAIR"</span>,</span>
 <span>    ont <span class="op">=</span> <span class="st">"BP"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'select()' returned 1:1 mapping between keys and columns</span></span>
 <span><span class="co">#&gt; Warning in bitr(gene, fromType = fromType, toType = "ENTREZID", OrgDb = OrgDb):</span></span>
 <span><span class="co">#&gt; 4.58% of input gene IDs are fail to map...</span></span>
 <span></span>
 <span><span class="va">GO</span><span class="op">@</span><span class="va">result</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">RichFactor</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">RichFactor</span>, <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">Description</span>, <span class="va">RichFactor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">RichFactor</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">RichFactor</span>, <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">Description</span>, <span class="va">RichFactor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">Count</span>, color <span class="op">=</span> <span class="va">FoldEnrichment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="venny_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="672"></p>
 </div>
 <div class="section level3">
-<h3 id="high-dosage-recovery-subset-bcd">High-dosage recovery (Subset BCD)<a class="anchor" aria-label="anchor" href="#high-dosage-recovery-subset-bcd"></a>
+<h3 id="high-dosage-recovery-subset-bcd">10.4 High-dosage recovery (Subset BCD)<a class="anchor" aria-label="anchor" href="#high-dosage-recovery-subset-bcd"></a>
 </h3>
 <p>We compared transcriptomic responses induced by high-dose exogenous
 chemical treatment in the knockout line (KO_high), endogenous
@@ -720,7 +692,7 @@ condition (KO_mock). This integrative comparison was used to evaluate
 whether the exogenous chemical can phenocopy endogenous activation of
 the pathway and whether its transcriptional effects converge toward a
 wild-type-like state.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">select_subsets</span> <span class="op">&lt;-</span> <span class="st">"BCD"</span></span>
 <span><span class="va">font_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">subset_names</span>, \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">select_subsets</span><span class="op">)</span> <span class="st">"red"</span> <span class="kw">else</span> <span class="st">"navy"</span><span class="op">)</span></span>
 <span></span>
@@ -740,25 +712,24 @@ wild-type-like state.</p>
 <span>    <span class="fu"><a href="../reference/setops.html">setdiff</a></span><span class="op">(</span><span class="va">ep</span><span class="op">$</span><span class="va">`KO_low vs KO_mock`</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/highlight.html">highlight</a></span><span class="op">(</span><span class="va">venn</span>, <span class="va">setops</span>, linetype <span class="op">=</span> <span class="st">"solid"</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="672"></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<p><img src="venny_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="672"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">GO</span> <span class="op">&lt;-</span> <span class="fu">clusterProfiler</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enrichGO.html" class="external-link">enrichGO</a></span><span class="op">(</span></span>
 <span>    gene <span class="op">=</span> <span class="va">BCD</span><span class="op">$</span><span class="va">subset_elements</span><span class="op">$</span><span class="va">BCD</span>,</span>
 <span>    OrgDb <span class="op">=</span> <span class="va">org.At.tair.db</span>,</span>
 <span>    keyType <span class="op">=</span> <span class="st">"TAIR"</span>,</span>
 <span>    ont <span class="op">=</span> <span class="st">"BP"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; 'select()' returned 1:1 mapping between keys and columns</span></span>
 <span><span class="co">#&gt; Warning in bitr(gene, fromType = fromType, toType = "ENTREZID", OrgDb = OrgDb):</span></span>
 <span><span class="co">#&gt; 2.08% of input gene IDs are fail to map...</span></span>
 <span></span>
 <span><span class="va">GO</span><span class="op">@</span><span class="va">result</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">RichFactor</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">RichFactor</span>, <span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">Description</span>, <span class="va">RichFactor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">RichFactor</span>, n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">RichFactor</span>, <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_reorder.html" class="external-link">fct_reorder</a></span><span class="op">(</span><span class="va">Description</span>, <span class="va">RichFactor</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">Count</span>, color <span class="op">=</span> <span class="va">FoldEnrichment</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="venny_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="672"></p>
+<p><img src="venny_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="672"></p>
 <p>Across all three contrasts, we observed a consistent enrichment of
 genes involved in nitrogen metabolism, suggesting that KO_high, OE_mock,
 and WT_mock share a common regulatory signature in this pathway. This
@@ -771,9 +742,9 @@ wild-type-like nitrogen metabolic regulation in the KO background.</p>
 <div class="section level2">
 <h2 id="practical-recommendations">11. Practical recommendations<a class="anchor" aria-label="anchor" href="#practical-recommendations"></a>
 </h2>
-<div class="section level3">
-<h3 id="choose-venny-when">Choose <code>venny()</code> when:<a class="anchor" aria-label="anchor" href="#choose-venny-when"></a>
-</h3>
+<div class="section level4">
+<h4 id="choose-venny-when">Choose <code>venny()</code> when:<a class="anchor" aria-label="anchor" href="#choose-venny-when"></a>
+</h4>
 <ul>
 <li>you need a publication-oriented Venn diagram;</li>
 <li>you want control over labels, counts, percentages, fills, and
@@ -783,9 +754,9 @@ lines;</li>
 regions.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="choose-venn_summary-when">Choose <code>venn_summary()</code> when:<a class="anchor" aria-label="anchor" href="#choose-venn_summary-when"></a>
-</h3>
+<div class="section level4">
+<h4 id="choose-venn_summary-when">Choose <code>venn_summary()</code> when:<a class="anchor" aria-label="anchor" href="#choose-venn_summary-when"></a>
+</h4>
 <ul>
 <li>the numerical composition of the subsets is more important than
 visualization;</li>
@@ -793,9 +764,9 @@ visualization;</li>
 <li>you want to extract the elements belonging to each region.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="use-ellipse-path-operations-when">Use ellipse-path operations when:<a class="anchor" aria-label="anchor" href="#use-ellipse-path-operations-when"></a>
-</h3>
+<div class="section level4">
+<h4 id="use-ellipse-path-operations-when">Use ellipse-path operations when:<a class="anchor" aria-label="anchor" href="#use-ellipse-path-operations-when"></a>
+</h4>
 <ul>
 <li>the desired region is more complicated than a single Venn
 subset;</li>
@@ -812,18 +783,15 @@ diagram.</li>
 <p>The <code>venny</code> package provides three closely connected
 levels of analysis:</p>
 <ol style="list-style-type: decimal">
-<li>
-<strong>Visualization</strong> — <code><a href="../reference/venny.html">venny()</a></code> creates
-customizable Venn diagrams.</li>
-<li>
-<strong>Tabulation</strong> — <code><a href="../reference/venn_summary.html">venn_summary()</a></code> describes
-the composition of every subset and can expose the corresponding
-elements.</li>
-<li>
-<strong>Geometry and set operations</strong> — ellipse paths can be
-manipulated with <code><a href="../reference/setops.html">intersect()</a></code>, <code><a href="../reference/setops.html">union()</a></code>, and
+<li><p><strong>Visualization</strong> – <code><a href="../reference/venny.html">venny()</a></code> creates
+customizable Venn diagrams.</p></li>
+<li><p><strong>Tabulation</strong> – <code><a href="../reference/venn_summary.html">venn_summary()</a></code>
+describes the composition of every subset and can expose the
+corresponding elements.</p></li>
+<li><p><strong>Geometry and set operations</strong> – ellipse paths can
+be manipulated with <code><a href="../reference/setops.html">intersect()</a></code>, <code><a href="../reference/setops.html">union()</a></code>, and
 <code><a href="../reference/setops.html">setdiff()</a></code>, and the resulting regions can be visualized with
-<code><a href="../reference/highlight.html">highlight()</a></code>.</li>
+<code><a href="../reference/highlight.html">highlight()</a></code>.</p></li>
 </ol>
 <p>This makes <code>venny</code> useful not only for displaying
 overlaps, but also for constructing reproducible workflows in which Venn
