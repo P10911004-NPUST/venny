@@ -67,7 +67,7 @@ venn_summary <- function(
         #     subset_elements = lst0
         # )
     } else {
-        please_ignore <- 1234
+        please_ignore <- "delete these commented lines on the next version"
         # ret <- list(
         #     table = df0,
         #     set_names_ref = set_names_ref

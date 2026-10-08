@@ -44,7 +44,7 @@ venny(lst)
 ![example01](./man/figures/example_00_venn.jpg "Figure 1")
 
 
-# Case study
+<!-- # Case study
 
 This is not a fully realistic case study. The primary purpose is to demonstrate how to use this package, rather than to present a rigorous academic analysis.
 
@@ -203,7 +203,7 @@ GO@result |>
 <br>
 <h2 style="text-align: center">The End !!!</h2>
 
-<br>
+<br> -->
 
 # TODO
 - [ ] Implement upset plot (depend on ggplot2 only)

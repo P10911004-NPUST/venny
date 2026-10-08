@@ -2,7 +2,9 @@
 
 - bugfixed: The position adjustment in `*_*_position()` didn't work when `show` or `hide` was not `NULL`.
 
-- add vignette
+- bugfixed: `venn_summary()` didn't return `subset_elements` when `show_elements = FALSE`.
+
+- add vignette and github-pages
 
 # venny 0.0.3
 

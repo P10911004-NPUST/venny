@@ -53,7 +53,7 @@ pak::pak("P10911004-NPUST/venny")
 
 Then load the package:
 
-```{r load-package}
+```{r, message=FALSE}
 library(venny)
 ```
 
@@ -67,18 +67,10 @@ The simplest input is a named list containing two to four vectors.
 venny(LGL23$DEGs)
 ```
 
-A practical usage scenario:
-
-```{r}
-
-```
-
-
 The names of the list are used as the set labels. If the input list is unnamed, `venny`
 automatically uses labels such as `Set_A`, `Set_B`, and `Set_C`.
 
-```{r unnamed-input}
-data <- list(1:100, 51:150)
+```{r}
 venny(unname(LGL23$DEGs))
 ```
 
@@ -206,11 +198,11 @@ names(LGL23$DEGs)
 However, the set labels for internal recognition is fixed as `set_label_default()`. The positioning 
 are:
 
-| Number of sets  | Internal set labels | Positioning                        |
-| :---:           | :--------:          | :----------:                       |
-| 2               | A, B                | left -> right                      |
-| 3               | A, B, C             | upper -> lower left -> lower right |
-| 4               | A, B, C, D          | start from lower left, clockwise   |
+| Number of sets     | Internal set labels | Positioning                        |
+| :------:           | :--------           | :----------                        |
+| 2                  | A, B                | left -> right                      |
+| 3                  | A, B, C             | upper -> lower left -> lower right |
+| 4                  | A, B, C, D          | start from lower left, clockwise   |
 
 So, when you want to assign the selected sets to the parameters-related function, do not use the 
 user-defined set labels. For example, if you want to hide the set labels of "KO_low vs KO_mock" 
@@ -219,10 +211,8 @@ user-defined set labels. For example, if you want to hide the set labels of "KO_
 ```{r set-label-hide}
 venny(
     LGL23$DEGs,
-    set.label.position = set_label_position(
-        hjust = c(0, -1, 0.5, 0),
-        hide = c("A", "C")
-    )
+    set.label.position = set_label_position(hjust = c(0, -1, 0.5, 0),
+                                            hide = c("A", "C"))
 )
 ```
 
@@ -231,10 +221,8 @@ The appearance of set labels is controlled with `set_label_font()`:
 ```{r set-label-font}
 venny(
     LGL23$DEGs,
-    set.label.font = set_label_font(
-        face = "italic",
-        size = 7
-    )
+    set.label.font = set_label_font(face = "italic",
+                                    size = 7)
 )
 ```
 
@@ -244,23 +232,18 @@ Subset labels can be customized via `subset_*_*()` functions independently of se
 labels can be renamed by assigning a list of (old_name = new_name) to the `subset.label` argument.
 
 ```{r subset-label-rename}
-subset_font_color <- vapply(
-    subset_label_default(4), 
-    function(x) if (x %in% c("A", "B", "C", "D")) "maroon" else "blue",
-    FUN.VALUE = character(1)
-)
+subset_font_color <- vapply(subset_label_default(length(LGL23$DEGs)), 
+                            function(x) 
+                                if (x %in% c("A", "B", "C", "D")) "maroon" else "blue",
+                            FUN.VALUE = character(1))
 
 venny(
     LGL23$DEGs,
-    subset.label = list(
-        A = "Apple",
-        B = "Banana",
-        C = "Coconut",
-        D = "Durian"
-    ),
-    subset.label.font = subset_label_font(
-        color = subset_font_color
-    )
+    subset.label = list(A = "Apple",
+                        B = "Banana",
+                        C = "Coconut",
+                        D = "Durian"),
+    subset.label.font = subset_label_font(color = subset_font_color)
 )
 ```
 
@@ -269,10 +252,10 @@ venny(
 Counts and percentages are independent layers.
 
 ```{r count-percentage}
-nm <- subset_label_default(4)
+nm <- subset_label_default(length(LGL23$DEGs))
 font_color <- fixed_length(c("red", "blue", "maroon"), length(nm))
 font_angle <- fixed_length(c(30, 60, 90, 180), length(nm))
-show_subset_perc <- c("A", "B", "C", "D", "AB", "ACD", "BC", "CD", "ABCD")
+show_perc <- c("A", "B", "C", "D", "AB", "ACD", "BC", "CD", "ABCD")
 
 venny(
     LGL23$DEGs,
@@ -281,8 +264,8 @@ venny(
                                           color = font_color,
                                           angle = font_angle),
     subset.percentage = TRUE,
-    subset.percentage.rounding = 1,
-    subset.percentage.position = subset_percentage_position(show = show_subset_perc),
+    subset.percentage.rounding = 4,
+    subset.percentage.position = subset_percentage_position(show = show_perc)
 )
 ```
 
@@ -292,13 +275,9 @@ For example:
 ```{r count-font}
 venny(
     LGL23$DEGs,
-    subset.count.font = subset_count_font(
-        face = "bold",
-        size = 4
-    ),
-    subset.percentage.font = subset_percentage_font(
-        size = 3.5
-    )
+    subset.count.font = subset_count_font(face = "bold",
+                                          size = 4),
+    subset.percentage.font = subset_percentage_font(size = 3.5)
 )
 ```
 
@@ -324,23 +303,14 @@ head(out$ellipse_path$`KO_low vs KO_mock`)
 The lower-level `generate_ellipse_path()` function can also be used independently.
 
 ```{r generate-ellipse}
-circle <- generate_ellipse_path(
-    x0 = 0,
-    y0 = 0,
-    a = 1,
-    b = 1
-)
-
-head(circle)
+e1 <- generate_ellipse_path(x0 = 0, y0 = 0, a = 2, b = 1, angle = 45)
+head(e1)
 ```
 
 Because the result is a data frame of `(x, y)` coordinates, it can be plotted with `ggplot2`:
 
-```{r generate-ellipse-plot}
-ggplot2::ggplot(
-    circle,
-    ggplot2::aes(x, y)
-) +
+```{r, out.width="35%"}
+ggplot2::ggplot(e1, ggplot2::aes(x, y)) +
     ggplot2::geom_polygon() +
     ggplot2::coord_fixed() +
     ggplot2::theme_void()
@@ -357,6 +327,21 @@ The package provides methods for:
 * `intersect()`: {A} &cap; {B} &cap; ... -- the common elements shared by the sets;
 * `union()`: {A} &cup; {B} &cup; ... -- all elements in the sets;
 * `setdiff()`: {A} &minus; {B} &minus; ... -- subtraction from the previous sets.
+
+<b>Note: To prevent function masking from other packages, explicitly namespace set operations 
+using `venny::` or reassign them locally:</b>
+
+```{r, eval=FALSE}
+# Option A: Explicit namespacing
+venny::intersect()
+venny::union()
+venny::setdiff()
+
+# Option B: Local reassignment
+intersect <- venny::intersect
+union     <- venny::union
+setdiff   <- venny::setdiff
+```
 
 These operations can subsequently be displayed with `highlight()` or `ggplot2::geom_polygon`. The 
 `highlight()` is a convenient wrapper around `ggplot2::geom_polygon()` for displaying the result 
@@ -375,20 +360,8 @@ This highlights the region shared by A, B, and D. Because `highlight()` returns 
 additional layers can be added. For example
 
 ```{r highlight-annotation}
-highlight(
-    out$venn,
-    setops,
-    color = "red",
-    fill = "red",
-    alpha = 0.25
-) +
-    ggplot2::annotate(
-        "text",
-        x = 0,
-        y = 2.5,
-        label = "A ∩ B ∩ D",
-        fontface = "bold"
-    )
+highlight(out$venn, setops, color = "red", fill = "red", alpha = 0.25) +
+    ggplot2::annotate("text", x = 0, y = 2.5, label = "A ∩ B ∩ D", fontface = "bold")
 ```
 
 ## 9.2 Union
@@ -421,12 +394,12 @@ single named Venn subset.
 
 <br>
 
-# 10. RNA-seq example
+# 10. Case study: RNA-seq analysis
 
 This is not a fully realistic case study. The purpose is to demonstrate how to use this package, 
 rather than to present a rigorous academic analysis.
 
-## Prerequisites
+## 10.1 Prerequisites
 
 ```{r, message=FALSE}
 if (!require(venny)) install.packages("venny")
@@ -450,7 +423,7 @@ setdiff <- venny::setdiff
 union <- venny::union
 ```
 
-## Background information
+## 10.2 Background information
 
 ```{r}
 lst <- LGL23$DEGs
@@ -478,14 +451,14 @@ The `LGL23` object is an RNA-seq dataset stored as a list containing the followi
     gene_X is highly expressed or constitutively activated. Ideally, the transcriptional profile of 
     OE_mock should resemble that of KO_high.
 
-## Loss-of-function (Set C)
+## 10.3 Loss-of-function (Set C)
 
 To investigate the function of the target gene, we compared gene expression profiles between the 
 WT and KO plants under untreated conditions. Differentially expressed genes (DEGs) identified from 
 this comparison may provide insights into the biological roles and regulatory functions of the 
 target gene.
 
-```{r, fig.width=8, fig.height=4}
+```{r, fig.width=7, fig.height=4}
 subset_names <- names(subset_label_default(length(lst)))
 select_subsets <- c("C", "BC", "CD", "ABC", "BCD", "AC", "ABCD", "ACD")
 font_color <- sapply(subset_names, \(x) if (x %in% select_subsets) "red" else "navy")
@@ -505,19 +478,20 @@ setops <- out$ellipse_path$`WT_mock vs KO_mock`
 highlight(venn, setops, linetype = "solid", color = "red") +
     coord_cartesian(xlim = c(-3, 5)) +
     annotate("richtext",
-        x = 3.2, y = -1.6,
-        hjust = 0,
-        size = 5,
-        label = paste(
-            "<b>KO:</b> Knock-out",
-            "<b>WT:</b> Wild-type",
-            "<b>OE:</b> Overexpression",
-            "<b>mock:</b> 0 nM treatment",
-            "<b>low:</b> 1 nM treatment",
-            "<b>high:</b> 5 nM treatment",
-            sep = "<br>"
-        ),
-    )
+             x = 3.2, 
+             y = -1.9,
+             hjust = 0,
+             size = 4,
+             label = paste(
+                 "<b>KO:</b> Knock-out",
+                 "<b>WT:</b> Wild-type",
+                 "<b>OE:</b> Overexpression",
+                 "<b>mock:</b> 0 nM treatment",
+                 "<b>low:</b> 1 nM treatment",
+                 "<b>high:</b> 5 nM treatment",
+                 sep = "<br>")) +
+    labs(title = "Awesome title") +
+    theme(plot.title = element_text(size = 20, face = "bold"))
 ```
 
 Target genes can be extracted from the DEGs and further analyzed using Gene Ontology (GO) analysis. 
@@ -526,7 +500,7 @@ finding, we observed clear phenotypic differences between WT and KO plants under
 conditions. Additionally, responses under sulfate starvation and drought recovery reveal potential 
 new functional roles of the gene, providing directions for future investigation.
 
-```{r}
+```{r, message=FALSE}
 GO <- clusterProfiler::enrichGO(
     gene = LGL23$DEGs$`WT_mock vs KO_mock`,
     OrgDb = org.At.tair.db,
@@ -535,14 +509,14 @@ GO <- clusterProfiler::enrichGO(
 )
 
 GO@result |>
-    slice_max(RichFactor, n = 20) |>
-    ggplot(aes(RichFactor, fct_reorder(Description, RichFactor))) +
+    dplyr::slice_max(RichFactor, n = 20) |>
+    ggplot(aes(RichFactor, forcats::fct_reorder(Description, RichFactor))) +
     theme_bw() +
     geom_point(aes(size = Count, color = FoldEnrichment)) +
     theme(axis.title.y = element_blank())
 ```
 
-## High-dosage recovery (Subset BCD)
+## 10.4 High-dosage recovery (Subset BCD)
 
 We compared transcriptomic responses induced by high-dose exogenous chemical treatment in the 
 knockout line (KO_high), endogenous overexpression of the target gene in the OE line (OE_mock), 
@@ -573,7 +547,7 @@ setops <- ep$`KO_high vs KO_mock` |>
 highlight(venn, setops, linetype = "solid", color = "red")
 ```
 
-```{r}
+```{r, message=FALSE}
 GO <- clusterProfiler::enrichGO(
     gene = BCD$subset_elements$BCD,
     OrgDb = org.At.tair.db,
@@ -582,8 +556,8 @@ GO <- clusterProfiler::enrichGO(
 )
 
 GO@result |>
-    slice_max(RichFactor, n = 20) |>
-    ggplot(aes(RichFactor, fct_reorder(Description, RichFactor))) +
+    dplyr::slice_max(RichFactor, n = 20) |>
+    ggplot(aes(RichFactor, forcats::fct_reorder(Description, RichFactor))) +
     theme_bw() +
     geom_point(aes(size = Count, color = FoldEnrichment)) +
     theme(axis.title.y = element_blank())
@@ -599,20 +573,20 @@ in the KO background.
 
 # 11. Practical recommendations
 
-## Choose `venny()` when:
+### Choose `venny()` when:
 
 * you need a publication-oriented Venn diagram;
 * you want control over labels, counts, percentages, fills, and lines;
 * you need direct access to the underlying subset elements;
 * you want to perform additional set operations on diagram regions.
 
-## Choose `venn_summary()` when:
+### Choose `venn_summary()` when:
 
 * the numerical composition of the subsets is more important than visualization;
 * you need a table for downstream processing;
 * you want to extract the elements belonging to each region.
 
-## Use ellipse-path operations when:
+### Use ellipse-path operations when:
 
 * the desired region is more complicated than a single Venn subset;
 * you need to combine intersections, unions, and differences;
@@ -624,14 +598,18 @@ in the KO background.
 
 The `venny` package provides three closely connected levels of analysis:
 
-1. **Visualization** — `venny()` creates customizable Venn diagrams.
-2. **Tabulation** — `venn_summary()` describes the composition of every subset and can expose the corresponding elements.
-3. **Geometry and set operations** — ellipse paths can be manipulated with `intersect()`, `union()`, and `setdiff()`, and the resulting regions can be visualized with `highlight()`.
+1. **Visualization** -- `venny()` creates customizable Venn diagrams.
 
-This makes `venny` useful not only for displaying overlaps, but also for constructing reproducible workflows in which Venn regions become explicit objects for downstream analysis.
+2. **Tabulation** -- `venn_summary()` describes the composition of every subset and can expose 
+the corresponding elements.
+
+3. **Geometry and set operations** -- ellipse paths can be manipulated with `intersect()`, 
+`union()`, and `setdiff()`, and the resulting regions can be visualized with `highlight()`.
+
+This makes `venny` useful not only for displaying overlaps, but also for constructing 
+reproducible workflows in which Venn regions become explicit objects for downstream analysis.
 
 ---
-
 
 <div style="text-align: center; margin-top: 2em; margin-bottom: 2em;">
 <h2>The End</h2>
