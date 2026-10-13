@@ -1,3 +1,5 @@
+# venny 0.0.5
+
 # venny 0.0.4
 
 - bugfixed: The position adjustment in `*_*_position()` didn't work when `show` or `hide` was not `NULL`.
