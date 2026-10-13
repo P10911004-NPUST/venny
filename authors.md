@@ -8,15 +8,15 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/P10911004-NPUST/venny/blob/v0.0.4/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/P10911004-NPUST/venny/blob/main/DESCRIPTION)
 
-Lai J (2026). *venny: Venn Diagram*. R package version 0.0.4,
+Lai J (2026). *venny: Venn Diagram*. R package version 0.0.5,
 <https://github.com/P10911004-NPUST/venny>.
 
     @Manual{,
       title = {venny: Venn Diagram},
       author = {Joon-Keat Lai},
       year = {2026},
-      note = {R package version 0.0.4},
+      note = {R package version 0.0.5},
       url = {https://github.com/P10911004-NPUST/venny},
     }
