@@ -2,6 +2,8 @@
 
 ## venny 0.0.4
 
+CRAN release: 2026-10-08
+
 - bugfixed: The position adjustment in `*_*_position()` didn’t work when
   `show` or `hide` was not `NULL`.
 
